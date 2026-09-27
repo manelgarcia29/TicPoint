@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TICPoint — Diari de projecte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12172a;
+    --ink-soft:#232a44;
+    --mist:#eef1ef;
+    --paper:#f8f7f3;
+    --line:#d9d5c8;
+    --slate:#5b6472;
+    --amber:#f2a93b;
+    --amber-dim:#c98a26;
+    --ok:#3fae76;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Space Grotesk", system-ui, sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:var(--ink);
+    color:var(--mist);
+    border-bottom:1px solid var(--ink-soft);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:960px;margin:0 auto;gap:16px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:9px;
+    font-family:"Space Grotesk";font-weight:600;font-size:18px;
+    color:#fff;text-decoration:none;
+  }
+  .brand-dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 0 0 rgba(242,169,59,.6);
+    animation:ping 2.6s ease-out infinite;
+  }
+  @keyframes ping{
+    0%{box-shadow:0 0 0 0 rgba(242,169,59,.55);}
+    70%{box-shadow:0 0 0 9px rgba(242,169,59,0);}
+    100%{box-shadow:0 0 0 0 rgba(242,169,59,0);}
+  }
+  @media (prefers-reduced-motion: reduce){.brand-dot{animation:none;}}
+  nav.links{display:flex;gap:22px;font-size:14.5px;}
+  nav.links a{text-decoration:none;color:#c7cbd6;transition:color .15s;}
+  nav.links a:hover, nav.links a:focus-visible{color:#fff;}
+
+  .lang-switch{
+    display:flex;border:1px solid #3a4262;border-radius:999px;
+    overflow:hidden;font-family:"IBM Plex Mono";font-size:12.5px;
+  }
+  .lang-switch button{
+    appearance:none;border:0;background:transparent;color:#9aa2b8;
+    padding:6px 13px;cursor:pointer;font-family:inherit;font-size:inherit;
+    transition:background .15s, color .15s;
+  }
+  .lang-switch button[aria-pressed="true"]{background:var(--amber);color:#1a1200;font-weight:600;}
+  .lang-switch button:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--ink);color:var(--mist);
+    padding:76px 0 84px;
+    border-bottom:1px solid var(--ink-soft);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:"IBM Plex Mono";font-size:13px;color:var(--amber);
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);}
+  .hero h1{
+    font-size:clamp(34px,5vw,54px);
+    font-weight:600;color:#fff;max-width:15ch;
+    margin-bottom:22px;
+  }
+  section{scroll-margin-top:76px;}
+  .hero p{max-width:52ch;color:#b9bfd0;font-size:17.5px;}
+  .hero-meta{
+    margin-top:38px;display:flex;flex-wrap:wrap;gap:32px;
+  }
+  .hero-meta div{font-family:"IBM Plex Mono";font-size:12.5px;color:#7a819c;}
+  .hero-meta strong{display:block;color:#e6e8f0;font-family:"IBM Plex Sans";font-size:15px;font-weight:500;margin-top:4px;}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0;}
+  section.alt{background:var(--mist);}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    margin-bottom:34px;border-bottom:1px solid var(--line);padding-bottom:16px;
+  }
+  .section-head h2{font-size:26px;}
+  .section-head span{font-family:"IBM Plex Mono";font-size:13px;color:var(--slate);}
+
+  .lead{max-width:62ch;color:var(--slate);font-size:16.5px;margin-bottom:8px;}
+
+  /* ---------- weekly log ---------- */
+  .week{
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:#fff;
+    margin-bottom:22px;
+    overflow:hidden;
+  }
+  .week-head{
+    display:flex;align-items:center;gap:16px;
+    padding:18px 22px;background:var(--ink);color:#fff;
+  }
+  .week-num{
+    font-family:"Space Grotesk";font-weight:700;font-size:20px;
+    color:var(--amber);min-width:2.2ch;
+  }
+  .week-head h3{font-size:16.5px;font-weight:500;color:#e9ebf1;}
+  .week-body{padding:22px;}
+  .task{
+    display:flex;gap:12px;padding:12px 0;border-top:1px solid #ece9df;
+  }
+  .task:first-child{border-top:0;padding-top:0;}
+  .task-status{
+    flex:none;margin-top:6px;width:8px;height:8px;border-radius:50%;
+  }
+  .status-done{background:var(--ok);}
+  .status-pending{background:var(--amber);}
+  .status-progress{background:#3b82c4;}
+  .task-text strong{display:block;font-weight:500;margin-bottom:2px;}
+  .task-text span{color:var(--slate);font-size:14.5px;}
+  .tag{
+    display:inline-block;margin-top:6px;
+    font-family:"IBM Plex Mono";font-size:11.5px;
+    padding:2px 8px;border-radius:999px;
+  }
+  .tag-pending{background:#fdf1dc;color:var(--amber-dim);}
+  .tag-done{background:#e6f5ec;color:#2c8a5b;}
+  .tag-progress{background:#e3edf7;color:#2f6fa3;}
+
+  /* ---------- team ---------- */
+  .team-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  @media (max-width:680px){.team-grid{grid-template-columns:1fr;}}
+  .member{
+    border:1px solid var(--line);background:#fff;border-radius:4px;
+    padding:24px;
+  }
+  .member-mark{
+    font-family:"IBM Plex Mono";font-size:12px;color:var(--amber-dim);
+    margin-bottom:10px;
+  }
+  .member h3{font-size:19px;margin-bottom:6px;}
+  .member p{color:var(--slate);font-size:14.5px;margin:0;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
+  @media (max-width:680px){.about-grid{grid-template-columns:1fr;}}
+  .stat-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);background:#fff;border-radius:4px;}
+  .stat-row{display:flex;justify-content:space-between;padding:16px 20px;border-top:1px solid #ece9df;}
+  .stat-row:first-child{border-top:0;}
+  .stat-row span:first-child{color:var(--slate);font-size:14px;}
+  .stat-row span:last-child{font-family:"IBM Plex Mono";font-weight:500;font-size:14px;}
+
+  footer{
+    background:var(--ink);color:#8b91a8;
+    padding:32px 0;font-size:13.5px;
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  footer strong{color:#c7cbd6;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top"><span class="brand-dot"></span>TICPoint</a>
+    <nav class="links">
+      <a href="#sobre" data-i18n="nav_about">Sobre el projecte</a>
+      <a href="#registre" data-i18n="nav_log">Registre setmanal</a>
+      <a href="#equip" data-i18n="nav_team">Equip</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="ca" aria-pressed="true">CA</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+  </div>
+</header>
+
+<div id="top" class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><span data-i18n="hero_eyebrow">Diari de projecte — actualitzat cada setmana</span></div>
+    <h1 data-i18n="hero_title">El diari de TICPoint</h1>
+    <p data-i18n="hero_desc">Seguiment anual d'un projecte d'assignatura: hem d'idear, entrevistar i acabar construint alguna cosa amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, els projectes que trobem, els contactes que fem i el que anem aprenent pel camí.</p>
+    <div class="hero-meta">
+      <div><span data-i18n="meta_team_label">Equip</span>
+        <strong>Manel · Dante · Thiago</strong>
+      </div>
+      <div><span data-i18n="meta_status_label">Estat actual</span>
+        <strong data-i18n="meta_status_value">3 propostes esperant resposta</strong>
+      </div>
+      <div><span data-i18n="meta_week_label">Setmana</span>
+        <strong>02</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="about_h2">Sobre el projecte</h2>
+      <span data-i18n="about_tag">TICPoint</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="lead" data-i18n="about_p1">TICPoint és el nom del nostre projecte de classe. L'objectiu és trobar una iniciativa o un equip real que estigui desenvolupant un producte o servei tecnològic, contactar-hi i fer-los una entrevista sobre com l'estan portant a terme.</p>
+        <p class="lead" data-i18n="about_p2">Cada setmana actualitzem aquesta pàgina amb el que hem fet: projectes que hem trobat, missatges que hem enviat i respostes que anem rebent.</p>
+        <p class="lead" data-i18n="about_p3">En paral·lel, el projecte té una part tècnica: al llarg del curs hem de programar una placa Arduino en C++, així que anem aprenent el llenguatge a mesura que avancem.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span data-i18n="stat_projects">Projectes localitzats</span><span>3</span></div>
+        <div class="stat-row"><span data-i18n="stat_contacted">Contactes enviats</span><span>3</span></div>
+        <div class="stat-row"><span data-i18n="stat_pending">Pendents de resposta</span><span>3</span></div>
+        <div class="stat-row"><span data-i18n="stat_weeks">Setmanes actives</span><span>2</span></div>
+        <div class="stat-row"><span data-i18n="stat_tech">Component tècnic</span><span>Arduino + C++</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="registre" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="log_h2">Registre setmanal</h2>
+      <span data-i18n="log_tag">Actualitzacions</span>
+    </div>
+    <p class="lead" data-i18n="log_lead">Aquí anem deixant constància de cada setmana: els projectes que investiguem per fer l'entrevista i, en paral·lel, els passos que fem amb la programació en C++ de cara a la placa Arduino. El punt ambre indica que estem a l'espera d'alguna resposta, el blau que ho tenim en marxa i el verd que ja està fet.</p>
+
+    <div class="week">
+      <div class="week-head">
+        <span class="week-num">01</span>
+        <h3 data-i18n="w1_title">Cerca de projectes i presentació de l'equip</h3>
+      </div>
+      <div class="week-body">
+        <div class="task">
+          <span class="task-status status-pending"></span>
+          <div class="task-text">
+            <strong data-i18n="w1_t1_title">Publicitat amb drons</strong>
+            <span data-i18n="w1_t1_desc">Projecte trobat a una pàgina de GoFundMe. Els vam escriure per proposar l'entrevista.</span><br>
+            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-pending"></span>
+          <div class="task-text">
+            <strong data-i18n="w1_t2_title">Informàtica per a cotxes de carreres</strong>
+            <span data-i18n="w1_t2_desc">Petit grup que vol potenciar la part informàtica dels seus vehicles de competició. Contactats, encara sense resposta.</span><br>
+            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-done"></span>
+          <div class="task-text">
+            <strong data-i18n="w1_t3_title">Presentació de rols de l'equip</strong>
+            <span data-i18n="w1_t3_desc">Vam presentar el grup i què pot aportar cada integrant al projecte.</span><br>
+            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-done"></span>
+          <div class="task-text">
+            <strong data-i18n="w1_t4_title">Inici de l'aprenentatge de C++</strong>
+            <span data-i18n="w1_t4_desc">Vam començar a aprendre les bases de C++, de cara a programar més endavant la placa Arduino.</span><br>
+            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-head">
+        <span class="week-num">02</span>
+        <h3 data-i18n="w2_title">Presentació del grup i nova proposta</h3>
+      </div>
+      <div class="week-body">
+        <div class="task">
+          <span class="task-status status-done"></span>
+          <div class="task-text">
+            <strong data-i18n="w2_t1_title">Presentació del grup de treball</strong>
+            <span data-i18n="w2_t1_desc">Vam presentar formalment el nostre equip de treball a classe.</span><br>
+            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-pending"></span>
+          <div class="task-text">
+            <strong data-i18n="w2_t2_title">Caldera sense fums visibles</strong>
+            <span data-i18n="w2_t2_desc">Nou projecte trobat: una caldera dissenyada per no expulsar fums visibles. Ja hem contactat i estem a l'espera de resposta.</span><br>
+            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-progress"></span>
+          <div class="task-text">
+            <strong data-i18n="w2_t3_title">Primers exercicis de C++</strong>
+            <span data-i18n="w2_t3_desc">Hem començat a fer exercicis pràctics de C++ per anar agafant soltesa abans de programar l'Arduino.</span><br>
+            <span class="tag tag-progress" data-i18n="tag_progress">En curs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="equip">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="team_h2">Equip</h2>
+      <span data-i18n="team_tag">3 integrants</span>
+    </div>
+    <div class="team-grid">
+      <div class="member">
+        <div class="member-mark">01</div>
+        <h3>Manel</h3>
+        <p data-i18n="member_generic">Integrant del projecte TICPoint.</p>
+      </div>
+      <div class="member">
+        <div class="member-mark">02</div>
+        <h3>Dante</h3>
+        <p data-i18n="member_generic">Integrant del projecte TICPoint.</p>
+      </div>
+      <div class="member">
+        <div class="member-mark">03</div>
+        <h3>Thiago</h3>
+        <p data-i18n="member_generic">Integrant del projecte TICPoint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><strong>TICPoint</strong> — <span data-i18n="footer_note">diari de projecte, actualitzat cada setmana</span></div>
+    <div data-i18n="footer_year">Curs 2026</div>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  ca: {
+    nav_about: "Sobre el projecte",
+    nav_log: "Registre setmanal",
+    nav_team: "Equip",
+    hero_eyebrow: "Diari de projecte — actualitzat cada setmana",
+    hero_title: "El diari de TICPoint",
+    hero_desc: "Seguiment anual d'un projecte d'assignatura: hem d'idear, entrevistar i acabar construint alguna cosa amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, els projectes que trobem, els contactes que fem i el que anem aprenent pel camí.",
+    meta_team_label: "Equip",
+    meta_status_label: "Estat actual",
+    meta_status_value: "3 propostes esperant resposta",
+    meta_week_label: "Setmana",
+    about_h2: "Sobre el projecte",
+    about_tag: "TICPoint",
+    about_p1: "TICPoint és el nom del nostre projecte de classe. L'objectiu és trobar una iniciativa o un equip real que estigui desenvolupant un producte o servei tecnològic, contactar-hi i fer-los una entrevista sobre com l'estan portant a terme.",
+    about_p2: "Cada setmana actualitzem aquesta pàgina amb el que hem fet: projectes que hem trobat, missatges que hem enviat i respostes que anem rebent.",
+    about_p3: "En paral·lel, el projecte té una part tècnica: al llarg del curs hem de programar una placa Arduino en C++, així que anem aprenent el llenguatge a mesura que avancem.",
+    stat_projects: "Projectes localitzats",
+    stat_contacted: "Contactes enviats",
+    stat_pending: "Pendents de resposta",
+    stat_weeks: "Setmanes actives",
+    stat_tech: "Component tècnic",
+    log_h2: "Registre setmanal",
+    log_tag: "Actualitzacions",
+    log_lead: "Aquí anem deixant constància de cada setmana: els projectes que investiguem per fer l'entrevista i, en paral·lel, els passos que fem amb la programació en C++ de cara a la placa Arduino. El punt ambre indica que estem a l'espera d'alguna resposta, el blau que ho tenim en marxa i el verd que ja està fet.",
+    w1_title: "Cerca de projectes i presentació de l'equip",
+    w1_t1_title: "Publicitat amb drons",
+    w1_t1_desc: "Projecte trobat a una pàgina de GoFundMe. Els vam escriure per proposar l'entrevista.",
+    w1_t2_title: "Informàtica per a cotxes de carreres",
+    w1_t2_desc: "Petit grup que vol potenciar la part informàtica dels seus vehicles de competició. Contactats, encara sense resposta.",
+    w1_t3_title: "Presentació de rols de l'equip",
+    w1_t3_desc: "Vam presentar el grup i què pot aportar cada integrant al projecte.",
+    w1_t4_title: "Inici de l'aprenentatge de C++",
+    w1_t4_desc: "Vam començar a aprendre les bases de C++, de cara a programar més endavant la placa Arduino.",
+    w2_title: "Presentació del grup i nova proposta",
+    w2_t1_title: "Presentació del grup de treball",
+    w2_t1_desc: "Vam presentar formalment el nostre equip de treball a classe.",
+    w2_t2_title: "Caldera sense fums visibles",
+    w2_t2_desc: "Nou projecte trobat: una caldera dissenyada per no expulsar fums visibles. Ja hem contactat i estem a l'espera de resposta.",
+    w2_t3_title: "Primers exercicis de C++",
+    w2_t3_desc: "Hem començat a fer exercicis pràctics de C++ per anar agafant soltesa abans de programar l'Arduino.",
+    tag_waiting: "En espera de resposta",
+    tag_done: "Fet",
+    tag_progress: "En curs",
+    team_h2: "Equip",
+    team_tag: "3 integrants",
+    member_generic: "Integrant del projecte TICPoint.",
+    footer_note: "diari de projecte, actualitzat cada setmana",
+    footer_year: "Curs 2026"
+  },
+  es: {
+    nav_about: "Sobre el proyecto",
+    nav_log: "Registro semanal",
+    nav_team: "Equipo",
+    hero_eyebrow: "Diario de proyecto — actualizado cada semana",
+    hero_title: "El diario de TICPoint",
+    hero_desc: "Seguimiento anual de un proyecto de asignatura: tenemos que idear, entrevistar y acabar construyendo algo con una placa Arduino programada en C++. Esta web recoge, semana a semana, los proyectos que encontramos, los contactos que hacemos y lo que vamos aprendiendo por el camino.",
+    meta_team_label: "Equipo",
+    meta_status_label: "Estado actual",
+    meta_status_value: "3 propuestas esperando respuesta",
+    meta_week_label: "Semana",
+    about_h2: "Sobre el proyecto",
+    about_tag: "TICPoint",
+    about_p1: "TICPoint es el nombre de nuestro proyecto de clase. El objetivo es encontrar una iniciativa o un equipo real que esté desarrollando un producto o servicio tecnológico, contactar con ellos y hacerles una entrevista sobre cómo lo están llevando a cabo.",
+    about_p2: "Cada semana actualizamos esta página con lo que hemos hecho: proyectos que hemos encontrado, mensajes que hemos enviado y respuestas que vamos recibiendo.",
+    about_p3: "En paralelo, el proyecto tiene una parte técnica: a lo largo del curso tenemos que programar una placa Arduino en C++, así que vamos aprendiendo el lenguaje a medida que avanzamos.",
+    stat_projects: "Proyectos localizados",
+    stat_contacted: "Contactos enviados",
+    stat_pending: "Pendientes de respuesta",
+    stat_weeks: "Semanas activas",
+    stat_tech: "Componente técnico",
+    log_h2: "Registro semanal",
+    log_tag: "Actualizaciones",
+    log_lead: "Aquí vamos dejando constancia de cada semana: los proyectos que investigamos para la entrevista y, en paralelo, los pasos que damos con la programación en C++ de cara a la placa Arduino. El punto ámbar indica que estamos a la espera de alguna respuesta, el azul que lo tenemos en marcha y el verde que ya está hecho.",
+    w1_title: "Búsqueda de proyectos y presentación del equipo",
+    w1_t1_title: "Publicidad con drones",
+    w1_t1_desc: "Proyecto encontrado en una página de GoFundMe. Les escribimos para proponer la entrevista.",
+    w1_t2_title: "Informática para coches de carreras",
+    w1_t2_desc: "Grupo pequeño que quiere potenciar la parte informática de sus vehículos de competición. Contactados, aún sin respuesta.",
+    w1_t3_title: "Presentación de roles del equipo",
+    w1_t3_desc: "Presentamos el grupo y qué puede aportar cada integrante al proyecto.",
+    w1_t4_title: "Inicio del aprendizaje de C++",
+    w1_t4_desc: "Empezamos a aprender las bases de C++, de cara a programar más adelante la placa Arduino.",
+    w2_title: "Presentación del grupo y nueva propuesta",
+    w2_t1_title: "Presentación del grupo de trabajo",
+    w2_t1_desc: "Presentamos formalmente nuestro equipo de trabajo en clase.",
+    w2_t2_title: "Caldera sin humos visibles",
+    w2_t2_desc: "Nuevo proyecto encontrado: una caldera diseñada para no expulsar humos visibles. Ya hemos contactado y estamos a la espera de respuesta.",
+    w2_t3_title: "Primeros ejercicios de C++",
+    w2_t3_desc: "Hemos empezado a hacer ejercicios prácticos de C++ para ir agarrando soltura antes de programar el Arduino.",
+    tag_waiting: "En espera de respuesta",
+    tag_done: "Hecho",
+    tag_progress: "En curso",
+    team_h2: "Equipo",
+    team_tag: "3 integrantes",
+    member_generic: "Integrante del proyecto TICPoint.",
+    footer_note: "diario de proyecto, actualizado cada semana",
+    footer_year: "Curso 2026"
+  }
+};
+
+function setLang(lang){
+  document.documentElement.lang = lang;
+  var dict = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    if(dict && dict[key] !== undefined){
+      el.textContent = dict[key];
+    }
+  });
+  document.querySelectorAll('.lang-switch button').forEach(function(btn){
+    btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+  });
+}
+
+document.querySelectorAll('.lang-switch button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    setLang(btn.getAttribute('data-lang'));
+  });
+});
+</script>
+
+</body>
+</html>
