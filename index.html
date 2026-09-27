@@ -157,6 +157,8 @@
   .tag-pending{background:#fdf1dc;color:var(--amber-dim);}
   .tag-done{background:#e6f5ec;color:#2c8a5b;}
   .tag-progress{background:#e3edf7;color:#2f6fa3;}
+  .proj-link{display:inline-block;margin-top:6px;font-size:13.5px;color:var(--amber-dim);text-decoration:underline;}
+  .proj-link:hover, .proj-link:focus-visible{color:var(--ink);}
 
   /* ---------- team ---------- */
   .team-grid{
@@ -268,7 +270,8 @@
           <span class="task-status status-pending"></span>
           <div class="task-text">
             <strong data-i18n="w1_t1_title">Publicitat amb drons</strong>
-            <span data-i18n="w1_t1_desc">Projecte trobat a una pàgina de GoFundMe. Els vam escriure per proposar l'entrevista.</span><br>
+            <span data-i18n="w1_t1_desc">Vam trobar un projecte a GoFundMe que proposa fer publicitat exterior amb drons i pantalles LED, com a alternativa als cartells tradicionals. Els vam enviar un missatge explicant qui som i demanant-los una entrevista sobre com estan portant el projecte, però encara no ens han contestat.</span>
+            <a class="proj-link" href="https://www.gofundme.com/f/la-publicidad-exterior-del-futuro-con-drones-y-pantallas-led" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
             <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
           </div>
         </div>
@@ -276,7 +279,8 @@
           <span class="task-status status-pending"></span>
           <div class="task-text">
             <strong data-i18n="w1_t2_title">Informàtica per a cotxes de carreres</strong>
-            <span data-i18n="w1_t2_desc">Petit grup que vol potenciar la part informàtica dels seus vehicles de competició. Contactats, encara sense resposta.</span><br>
+            <span data-i18n="w1_t2_desc">A Verkami vam trobar E-Tech Racing, un equip reduït que busca finançament per potenciar la part electrònica i informàtica dels seus cotxes de competició. Els vam escriure proposant-los una entrevista sobre el projecte, i seguim esperant resposta.</span>
+            <a class="proj-link" href="https://www.verkami.com/projects/30457-e-tech-racing-drivewithus" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
             <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
           </div>
         </div>
@@ -284,7 +288,7 @@
           <span class="task-status status-done"></span>
           <div class="task-text">
             <strong data-i18n="w1_t3_title">Presentació de rols de l'equip</strong>
-            <span data-i18n="w1_t3_desc">Vam presentar el grup i què pot aportar cada integrant al projecte.</span><br>
+            <span data-i18n="w1_t3_desc">Vam presentar el nostre grup de treball a classe i vam explicar quin paper pot fer cadascú dins del projecte, perquè la feina de les properes setmanes quedés repartida des del principi.</span><br>
             <span class="tag tag-done" data-i18n="tag_done">Fet</span>
           </div>
         </div>
@@ -292,7 +296,7 @@
           <span class="task-status status-done"></span>
           <div class="task-text">
             <strong data-i18n="w1_t4_title">Inici de l'aprenentatge de C++</strong>
-            <span data-i18n="w1_t4_desc">Vam començar a aprendre les bases de C++, de cara a programar més endavant la placa Arduino.</span><br>
+            <span data-i18n="w1_t4_desc">Vam començar a aprendre les bases de C++ (variables, tipus de dades i estructures de control bàsiques), ja que més endavant l'haurem d'utilitzar per programar la placa Arduino.</span><br>
             <span class="tag tag-done" data-i18n="tag_done">Fet</span>
           </div>
         </div>
@@ -309,7 +313,7 @@
           <span class="task-status status-done"></span>
           <div class="task-text">
             <strong data-i18n="w2_t1_title">Presentació del grup de treball</strong>
-            <span data-i18n="w2_t1_desc">Vam presentar formalment el nostre equip de treball a classe.</span><br>
+            <span data-i18n="w2_t1_desc">Vam presentar formalment el nostre equip de treball davant de la classe, explicant en quin punt estàvem del projecte i quins eren els següents passos.</span><br>
             <span class="tag tag-done" data-i18n="tag_done">Fet</span>
           </div>
         </div>
@@ -317,16 +321,17 @@
           <span class="task-status status-pending"></span>
           <div class="task-text">
             <strong data-i18n="w2_t2_title">Caldera sense fums visibles</strong>
-            <span data-i18n="w2_t2_desc">Nou projecte trobat: una caldera dissenyada per no expulsar fums visibles. Ja hem contactat i estem a l'espera de resposta.</span><br>
+            <span data-i18n="w2_t2_desc">A Kickstarter vam trobar EcoBoiler, una caldera pensada perquè no expulsi fums visibles ni contamini com les calderes convencionals. Els hem enviat un missatge per demanar-los una entrevista i estem pendents que ens contestin.</span>
+            <a class="proj-link" href="https://www.kickstarter.com/projects/energomult/ecoboiler-caldera-sin-contaminacion" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
             <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
           </div>
         </div>
         <div class="task">
-          <span class="task-status status-progress"></span>
+          <span class="task-status status-done"></span>
           <div class="task-text">
             <strong data-i18n="w2_t3_title">Primers exercicis de C++</strong>
-            <span data-i18n="w2_t3_desc">Hem començat a fer exercicis pràctics de C++ per anar agafant soltesa abans de programar l'Arduino.</span><br>
-            <span class="tag tag-progress" data-i18n="tag_progress">En curs</span>
+            <span data-i18n="w2_t3_desc">Hem fet els primers exercicis pràctics de C++ per posar en pràctica el que vam aprendre la setmana anterior, com a pas previ abans de començar a programar l'Arduino.</span><br>
+            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
           </div>
         </div>
       </div>
@@ -396,23 +401,24 @@ const translations = {
     log_lead: "Aquí anem deixant constància de cada setmana: els projectes que investiguem per fer l'entrevista i, en paral·lel, els passos que fem amb la programació en C++ de cara a la placa Arduino. El punt ambre indica que estem a l'espera d'alguna resposta, el blau que ho tenim en marxa i el verd que ja està fet.",
     w1_title: "Cerca de projectes i presentació de l'equip",
     w1_t1_title: "Publicitat amb drons",
-    w1_t1_desc: "Projecte trobat a una pàgina de GoFundMe. Els vam escriure per proposar l'entrevista.",
+    w1_t1_desc: "Vam trobar un projecte a GoFundMe que proposa fer publicitat exterior amb drons i pantalles LED, com a alternativa als cartells tradicionals. Els vam enviar un missatge explicant qui som i demanant-los una entrevista sobre com estan portant el projecte, però encara no ens han contestat.",
     w1_t2_title: "Informàtica per a cotxes de carreres",
-    w1_t2_desc: "Petit grup que vol potenciar la part informàtica dels seus vehicles de competició. Contactats, encara sense resposta.",
+    w1_t2_desc: "A Verkami vam trobar E-Tech Racing, un equip reduït que busca finançament per potenciar la part electrònica i informàtica dels seus cotxes de competició. Els vam escriure proposant-los una entrevista sobre el projecte, i seguim esperant resposta.",
     w1_t3_title: "Presentació de rols de l'equip",
-    w1_t3_desc: "Vam presentar el grup i què pot aportar cada integrant al projecte.",
+    w1_t3_desc: "Vam presentar el nostre grup de treball a classe i vam explicar quin paper pot fer cadascú dins del projecte, perquè la feina de les properes setmanes quedés repartida des del principi.",
     w1_t4_title: "Inici de l'aprenentatge de C++",
-    w1_t4_desc: "Vam començar a aprendre les bases de C++, de cara a programar més endavant la placa Arduino.",
+    w1_t4_desc: "Vam començar a aprendre les bases de C++ (variables, tipus de dades i estructures de control bàsiques), ja que més endavant l'haurem d'utilitzar per programar la placa Arduino.",
     w2_title: "Presentació del grup i nova proposta",
     w2_t1_title: "Presentació del grup de treball",
-    w2_t1_desc: "Vam presentar formalment el nostre equip de treball a classe.",
+    w2_t1_desc: "Vam presentar formalment el nostre equip de treball davant de la classe, explicant en quin punt estàvem del projecte i quins eren els següents passos.",
     w2_t2_title: "Caldera sense fums visibles",
-    w2_t2_desc: "Nou projecte trobat: una caldera dissenyada per no expulsar fums visibles. Ja hem contactat i estem a l'espera de resposta.",
+    w2_t2_desc: "A Kickstarter vam trobar EcoBoiler, una caldera pensada perquè no expulsi fums visibles ni contamini com les calderes convencionals. Els hem enviat un missatge per demanar-los una entrevista i estem pendents que ens contestin.",
     w2_t3_title: "Primers exercicis de C++",
-    w2_t3_desc: "Hem començat a fer exercicis pràctics de C++ per anar agafant soltesa abans de programar l'Arduino.",
+    w2_t3_desc: "Hem fet els primers exercicis pràctics de C++ per posar en pràctica el que vam aprendre la setmana anterior, com a pas previ abans de començar a programar l'Arduino.",
     tag_waiting: "En espera de resposta",
     tag_done: "Fet",
     tag_progress: "En curs",
+    link_view_project: "Veure el projecte",
     team_h2: "Equip",
     team_tag: "3 integrants",
     member_generic: "Integrant del projecte TICPoint.",
@@ -445,23 +451,24 @@ const translations = {
     log_lead: "Aquí vamos dejando constancia de cada semana: los proyectos que investigamos para la entrevista y, en paralelo, los pasos que damos con la programación en C++ de cara a la placa Arduino. El punto ámbar indica que estamos a la espera de alguna respuesta, el azul que lo tenemos en marcha y el verde que ya está hecho.",
     w1_title: "Búsqueda de proyectos y presentación del equipo",
     w1_t1_title: "Publicidad con drones",
-    w1_t1_desc: "Proyecto encontrado en una página de GoFundMe. Les escribimos para proponer la entrevista.",
+    w1_t1_desc: "Encontramos un proyecto en GoFundMe que propone hacer publicidad exterior con drones y pantallas LED, como alternativa a los carteles tradicionales. Les enviamos un mensaje explicando quiénes somos y pidiéndoles una entrevista sobre cómo están llevando el proyecto, pero todavía no nos han contestado.",
     w1_t2_title: "Informática para coches de carreras",
-    w1_t2_desc: "Grupo pequeño que quiere potenciar la parte informática de sus vehículos de competición. Contactados, aún sin respuesta.",
+    w1_t2_desc: "En Verkami encontramos E-Tech Racing, un equipo reducido que busca financiación para potenciar la parte electrónica e informática de sus coches de competición. Les escribimos proponiéndoles una entrevista sobre el proyecto, y seguimos esperando respuesta.",
     w1_t3_title: "Presentación de roles del equipo",
-    w1_t3_desc: "Presentamos el grupo y qué puede aportar cada integrante al proyecto.",
+    w1_t3_desc: "Presentamos nuestro grupo de trabajo en clase y explicamos qué papel puede hacer cada uno dentro del proyecto, para que el trabajo de las próximas semanas quedara repartido desde el principio.",
     w1_t4_title: "Inicio del aprendizaje de C++",
-    w1_t4_desc: "Empezamos a aprender las bases de C++, de cara a programar más adelante la placa Arduino.",
+    w1_t4_desc: "Empezamos a aprender las bases de C++ (variables, tipos de datos y estructuras de control básicas), ya que más adelante tendremos que usarlo para programar la placa Arduino.",
     w2_title: "Presentación del grupo y nueva propuesta",
     w2_t1_title: "Presentación del grupo de trabajo",
-    w2_t1_desc: "Presentamos formalmente nuestro equipo de trabajo en clase.",
+    w2_t1_desc: "Presentamos formalmente nuestro equipo de trabajo ante la clase, explicando en qué punto estábamos del proyecto y cuáles eran los siguientes pasos.",
     w2_t2_title: "Caldera sin humos visibles",
-    w2_t2_desc: "Nuevo proyecto encontrado: una caldera diseñada para no expulsar humos visibles. Ya hemos contactado y estamos a la espera de respuesta.",
+    w2_t2_desc: "En Kickstarter encontramos EcoBoiler, una caldera pensada para no expulsar humos visibles ni contaminar como las calderas convencionales. Les hemos enviado un mensaje para pedirles una entrevista y estamos pendientes de que nos contesten.",
     w2_t3_title: "Primeros ejercicios de C++",
-    w2_t3_desc: "Hemos empezado a hacer ejercicios prácticos de C++ para ir agarrando soltura antes de programar el Arduino.",
+    w2_t3_desc: "Hicimos los primeros ejercicios prácticos de C++ para poner en práctica lo aprendido la semana anterior, como paso previo antes de empezar a programar el Arduino.",
     tag_waiting: "En espera de respuesta",
     tag_done: "Hecho",
     tag_progress: "En curso",
+    link_view_project: "Ver el proyecto",
     team_h2: "Equipo",
     team_tag: "3 integrantes",
     member_generic: "Integrante del proyecto TICPoint.",
