@@ -159,6 +159,10 @@
   .tag-progress{background:#e3edf7;color:#2f6fa3;}
   .proj-link{display:inline-block;margin-top:6px;font-size:13.5px;color:var(--amber-dim);text-decoration:underline;}
   .proj-link:hover, .proj-link:focus-visible{color:var(--ink);}
+  .week-note{
+    margin:14px 0 0;padding-top:14px;border-top:1px dashed var(--line);
+    font-size:13.5px;color:var(--slate);font-style:italic;
+  }
 
   /* ---------- team ---------- */
   .team-grid{
@@ -220,10 +224,10 @@
         <strong>Manel · Dante · Thiago</strong>
       </div>
       <div><span data-i18n="meta_status_label">Estat actual</span>
-        <strong data-i18n="meta_status_value">3 propostes esperant resposta</strong>
+        <strong data-i18n="meta_status_value">4 propostes esperant resposta</strong>
       </div>
       <div><span data-i18n="meta_week_label">Setmana</span>
-        <strong>02</strong>
+        <strong>03</strong>
       </div>
     </div>
   </div>
@@ -242,10 +246,10 @@
         <p class="lead" data-i18n="about_p3">En paral·lel, el projecte té una part tècnica: al llarg del curs hem de programar una placa Arduino en C++, així que anem aprenent el llenguatge a mesura que avancem.</p>
       </div>
       <div class="stat-list">
-        <div class="stat-row"><span data-i18n="stat_projects">Projectes localitzats</span><span>3</span></div>
-        <div class="stat-row"><span data-i18n="stat_contacted">Contactes enviats</span><span>3</span></div>
-        <div class="stat-row"><span data-i18n="stat_pending">Pendents de resposta</span><span>3</span></div>
-        <div class="stat-row"><span data-i18n="stat_weeks">Setmanes actives</span><span>2</span></div>
+        <div class="stat-row"><span data-i18n="stat_projects">Projectes localitzats</span><span>4</span></div>
+        <div class="stat-row"><span data-i18n="stat_contacted">Contactes enviats</span><span>4</span></div>
+        <div class="stat-row"><span data-i18n="stat_pending">Pendents de resposta</span><span>4</span></div>
+        <div class="stat-row"><span data-i18n="stat_weeks">Setmanes actives</span><span>3</span></div>
         <div class="stat-row"><span data-i18n="stat_tech">Component tècnic</span><span>Arduino + C++</span></div>
       </div>
     </div>
@@ -337,6 +341,41 @@
       </div>
     </div>
 
+    <div class="week">
+      <div class="week-head">
+        <span class="week-num">03</span>
+        <h3 data-i18n="w3_title">Primeres pràctiques amb Arduino</h3>
+      </div>
+      <div class="week-body">
+        <div class="task">
+          <span class="task-status status-done"></span>
+          <div class="task-text">
+            <strong data-i18n="w3_t1_title">Pràctica de LEDs i polsador</strong>
+            <span data-i18n="w3_t1_desc">Vam connectar tres LEDs a la placa: un parpellejava de manera continua mentre els altres dos s'encenien i s'apagaven en prémer un polsador. Vam escriure el primer codi en C++ per controlar-ho des de l'Arduino.</span><br>
+            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-done"></span>
+          <div class="task-text">
+            <strong data-i18n="w3_t2_title">Sensor de llum i potenciòmetre</strong>
+            <span data-i18n="w3_t2_desc">Segona pràctica: amb un sensor de llum (LDR) i un potenciòmetre vam controlar quan s'havien d'encendre o apagar els LEDs segons la quantitat de llum i el llindar que fixàvem.</span><br>
+            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
+          </div>
+        </div>
+        <div class="task">
+          <span class="task-status status-pending"></span>
+          <div class="task-text">
+            <strong data-i18n="w3_t3_title">Connectivitat per a Game Boy Advance</strong>
+            <span data-i18n="w3_t3_desc">Vam trobar CanoFlash, una empresa que ha creat un adaptador Wi-Fi i un SDK en C per fer jocs homebrew multijugador en línia per a la Game Boy Advance original. Els hem escrit per demanar-los una entrevista i estem a l'espera de resposta.</span>
+            <a class="proj-link" href="https://canoflash.com/es/" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
+            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
+          </div>
+        </div>
+        <p class="week-note" data-i18n="w3_note">Dimarts no vam tenir classe, així que aquest dia no vam avançar en el projecte.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -350,17 +389,17 @@
       <div class="member">
         <div class="member-mark">01</div>
         <h3>Manel</h3>
-        <p data-i18n="member_generic">Integrant del projecte TICPoint.</p>
+        <p data-i18n="member_manel">Aporta organització i resolució de problemes: li agrada mantenir la feina clara i trobar solucions ràpides amb una actitud proactiva.</p>
       </div>
       <div class="member">
         <div class="member-mark">02</div>
         <h3>Dante</h3>
-        <p data-i18n="member_generic">Integrant del projecte TICPoint.</p>
+        <p data-i18n="member_dante">Aporta gestió i responsabilitat: s'encarrega d'estructurar les tasques i mantenir la constància del grup perquè tot avanci com toca.</p>
       </div>
       <div class="member">
         <div class="member-mark">03</div>
         <h3>Thiago</h3>
-        <p data-i18n="member_generic">Integrant del projecte TICPoint.</p>
+        <p data-i18n="member_thiago">Aporta creativitat i bona comunicació: proposa idees noves i ajuda que el grup es coordini millor gràcies al seu esforç i participació.</p>
       </div>
     </div>
   </div>
@@ -384,7 +423,7 @@ const translations = {
     hero_desc: "Seguiment anual d'un projecte d'assignatura: hem d'idear, entrevistar i acabar construint alguna cosa amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, els projectes que trobem, els contactes que fem i el que anem aprenent pel camí.",
     meta_team_label: "Equip",
     meta_status_label: "Estat actual",
-    meta_status_value: "3 propostes esperant resposta",
+    meta_status_value: "4 propostes esperant resposta",
     meta_week_label: "Setmana",
     about_h2: "Sobre el projecte",
     about_tag: "TICPoint",
@@ -415,13 +454,23 @@ const translations = {
     w2_t2_desc: "A Kickstarter vam trobar EcoBoiler, una caldera pensada perquè no expulsi fums visibles ni contamini com les calderes convencionals. Els hem enviat un missatge per demanar-los una entrevista i estem pendents que ens contestin.",
     w2_t3_title: "Primers exercicis de C++",
     w2_t3_desc: "Hem fet els primers exercicis pràctics de C++ per posar en pràctica el que vam aprendre la setmana anterior, com a pas previ abans de començar a programar l'Arduino.",
+    w3_title: "Primeres pràctiques amb Arduino",
+    w3_t1_title: "Pràctica de LEDs i polsador",
+    w3_t1_desc: "Vam connectar tres LEDs a la placa: un parpellejava de manera continua mentre els altres dos s'encenien i s'apagaven en prémer un polsador. Vam escriure el primer codi en C++ per controlar-ho des de l'Arduino.",
+    w3_t2_title: "Sensor de llum i potenciòmetre",
+    w3_t2_desc: "Segona pràctica: amb un sensor de llum (LDR) i un potenciòmetre vam controlar quan s'havien d'encendre o apagar els LEDs segons la quantitat de llum i el llindar que fixàvem.",
+    w3_t3_title: "Connectivitat per a Game Boy Advance",
+    w3_t3_desc: "Vam trobar CanoFlash, una empresa que ha creat un adaptador Wi-Fi i un SDK en C per fer jocs homebrew multijugador en línia per a la Game Boy Advance original. Els hem escrit per demanar-los una entrevista i estem a l'espera de resposta.",
+    w3_note: "Dimarts no vam tenir classe, així que aquest dia no vam avançar en el projecte.",
     tag_waiting: "En espera de resposta",
     tag_done: "Fet",
     tag_progress: "En curs",
     link_view_project: "Veure el projecte",
     team_h2: "Equip",
     team_tag: "3 integrants",
-    member_generic: "Integrant del projecte TICPoint.",
+    member_manel: "Aporta organització i resolució de problemes: li agrada mantenir la feina clara i trobar solucions ràpides amb una actitud proactiva.",
+    member_dante: "Aporta gestió i responsabilitat: s'encarrega d'estructurar les tasques i mantenir la constància del grup perquè tot avanci com toca.",
+    member_thiago: "Aporta creativitat i bona comunicació: proposa idees noves i ajuda que el grup es coordini millor gràcies al seu esforç i participació.",
     footer_note: "diari de projecte, actualitzat cada setmana",
     footer_year: "Curs 2026"
   },
@@ -434,7 +483,7 @@ const translations = {
     hero_desc: "Seguimiento anual de un proyecto de asignatura: tenemos que idear, entrevistar y acabar construyendo algo con una placa Arduino programada en C++. Esta web recoge, semana a semana, los proyectos que encontramos, los contactos que hacemos y lo que vamos aprendiendo por el camino.",
     meta_team_label: "Equipo",
     meta_status_label: "Estado actual",
-    meta_status_value: "3 propuestas esperando respuesta",
+    meta_status_value: "4 propuestas esperando respuesta",
     meta_week_label: "Semana",
     about_h2: "Sobre el proyecto",
     about_tag: "TICPoint",
@@ -465,13 +514,23 @@ const translations = {
     w2_t2_desc: "En Kickstarter encontramos EcoBoiler, una caldera pensada para no expulsar humos visibles ni contaminar como las calderas convencionales. Les hemos enviado un mensaje para pedirles una entrevista y estamos pendientes de que nos contesten.",
     w2_t3_title: "Primeros ejercicios de C++",
     w2_t3_desc: "Hicimos los primeros ejercicios prácticos de C++ para poner en práctica lo aprendido la semana anterior, como paso previo antes de empezar a programar el Arduino.",
+    w3_title: "Primeras prácticas con Arduino",
+    w3_t1_title: "Práctica de LEDs y pulsador",
+    w3_t1_desc: "Conectamos tres LEDs a la placa: uno parpadeaba de forma continua mientras los otros dos se encendían y apagaban al pulsar un botón. Escribimos el primer código en C++ para controlarlo desde el Arduino.",
+    w3_t2_title: "Sensor de luz y potenciómetro",
+    w3_t2_desc: "Segunda práctica: con un sensor de luz (LDR) y un potenciómetro controlamos cuándo debían encenderse o apagarse los LEDs según la cantidad de luz y el umbral que fijábamos.",
+    w3_t3_title: "Conectividad para Game Boy Advance",
+    w3_t3_desc: "Encontramos CanoFlash, una empresa que ha creado un adaptador Wi-Fi y un SDK en C para hacer juegos homebrew multijugador en línea para la Game Boy Advance original. Les hemos escrito para pedirles una entrevista y estamos a la espera de respuesta.",
+    w3_note: "El martes no tuvimos clase, así que ese día no avanzamos en el proyecto.",
     tag_waiting: "En espera de respuesta",
     tag_done: "Hecho",
     tag_progress: "En curso",
     link_view_project: "Ver el proyecto",
     team_h2: "Equipo",
     team_tag: "3 integrantes",
-    member_generic: "Integrante del proyecto TICPoint.",
+    member_manel: "Aporta organización y resolución de problemas: le gusta mantener el trabajo claro y encontrar soluciones rápidas con una actitud proactiva.",
+    member_dante: "Aporta gestión y responsabilidad: se encarga de estructurar las tareas y mantener la constancia del grupo para que todo avance como toca.",
+    member_thiago: "Aporta creatividad y buena comunicación: propone ideas nuevas y ayuda a que el grupo se coordine mejor gracias a su esfuerzo y participación.",
     footer_note: "diario de proyecto, actualizado cada semana",
     footer_year: "Curso 2026"
   }
