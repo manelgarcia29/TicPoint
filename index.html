@@ -14,10 +14,12 @@
     --mist:#eef1ef;
     --paper:#f8f7f3;
     --line:#d9d5c8;
+    --line-soft:#ece9df;
     --slate:#5b6472;
     --amber:#f2a93b;
-    --amber-dim:#c98a26;
+    --amber-dim:#b97a1c;
     --ok:#3fae76;
+    --blue:#3b82c4;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -37,6 +39,7 @@
   }
   a{color:inherit;}
   .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+  @media (max-width:560px){.wrap{padding:0 16px;}}
 
   /* ---------- header ---------- */
   header{
@@ -47,7 +50,7 @@
   }
   .nav{
     display:flex;align-items:center;justify-content:space-between;
-    padding:16px 28px;max-width:960px;margin:0 auto;gap:16px;
+    padding:14px 28px;max-width:960px;margin:0 auto;gap:16px;
   }
   .brand{
     display:flex;align-items:center;gap:9px;
@@ -57,7 +60,6 @@
   .brand-dot{
     width:9px;height:9px;border-radius:50%;
     background:var(--amber);
-    box-shadow:0 0 0 0 rgba(242,169,59,.6);
     animation:ping 2.6s ease-out infinite;
   }
   @keyframes ping{
@@ -69,6 +71,7 @@
   nav.links{display:flex;gap:22px;font-size:14.5px;}
   nav.links a{text-decoration:none;color:#c7cbd6;transition:color .15s;}
   nav.links a:hover, nav.links a:focus-visible{color:#fff;}
+  @media (max-width:760px){nav.links{display:none;}}
 
   .lang-switch{
     display:flex;border:1px solid #3a4262;border-radius:999px;
@@ -77,7 +80,6 @@
   .lang-switch button{
     appearance:none;border:0;background:transparent;color:#9aa2b8;
     padding:6px 13px;cursor:pointer;font-family:inherit;font-size:inherit;
-    transition:background .15s, color .15s;
   }
   .lang-switch button[aria-pressed="true"]{background:var(--amber);color:#1a1200;font-weight:600;}
   .lang-switch button:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
@@ -85,114 +87,172 @@
   /* ---------- hero ---------- */
   .hero{
     background:var(--ink);color:var(--mist);
-    padding:76px 0 84px;
-    border-bottom:1px solid var(--ink-soft);
+    padding:72px 0 80px;
   }
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;
     font-family:"IBM Plex Mono";font-size:13px;color:var(--amber);
     margin-bottom:22px;
   }
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);}
+  .eyebrow .spark{width:6px;height:6px;border-radius:50%;background:var(--amber);}
   .hero h1{
     font-size:clamp(34px,5vw,54px);
     font-weight:600;color:#fff;max-width:15ch;
     margin-bottom:22px;
   }
-  section{scroll-margin-top:76px;}
-  .hero p{max-width:52ch;color:#b9bfd0;font-size:17.5px;}
-  .hero-meta{
-    margin-top:38px;display:flex;flex-wrap:wrap;gap:32px;
-  }
+  .hero p{max-width:56ch;color:#b9bfd0;font-size:17px;margin:0;}
+  .hero-meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:32px;}
   .hero-meta div{font-family:"IBM Plex Mono";font-size:12.5px;color:#7a819c;}
   .hero-meta strong{display:block;color:#e6e8f0;font-family:"IBM Plex Sans";font-size:15px;font-weight:500;margin-top:4px;}
 
+  /* progress strip: one cell per week */
+  .weekbar{margin-top:40px;}
+  .progress-label{font-family:"IBM Plex Mono";font-size:12px;color:#7a819c;margin-bottom:10px;}
+  .progress-cells{display:flex;gap:6px;flex-wrap:wrap;}
+  .progress-cells a{
+    flex:1 1 28px;min-width:28px;height:34px;border-radius:3px;
+    background:#1d2440;border:1px solid #2c3454;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono";font-size:11.5px;color:#8b91a8;text-decoration:none;
+    transition:border-color .15s, color .15s;
+  }
+  .progress-cells a.filled{background:#26304f;color:#dfe3ee;}
+  .progress-cells a.current{background:var(--amber);border-color:var(--amber);color:#1a1200;font-weight:600;}
+  .progress-cells a:hover, .progress-cells a:focus-visible{border-color:var(--amber);color:#fff;outline:none;}
+  .progress-cells a.current:hover, .progress-cells a.current:focus-visible{color:#1a1200;}
+
   /* ---------- sections ---------- */
-  section{padding:64px 0;}
+  section{padding:64px 0;scroll-margin-top:64px;}
   section.alt{background:var(--mist);}
   .section-head{
-    display:flex;align-items:baseline;gap:14px;
-    margin-bottom:34px;border-bottom:1px solid var(--line);padding-bottom:16px;
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    margin-bottom:30px;border-bottom:1px solid var(--line);padding-bottom:16px;
   }
   .section-head h2{font-size:26px;}
-  .section-head span{font-family:"IBM Plex Mono";font-size:13px;color:var(--slate);}
-
-  .lead{max-width:62ch;color:var(--slate);font-size:16.5px;margin-bottom:8px;}
-
-  /* ---------- weekly log ---------- */
-  .week{
-    border:1px solid var(--line);
-    border-radius:4px;
-    background:#fff;
-    margin-bottom:22px;
-    overflow:hidden;
-  }
-  .week-head{
-    display:flex;align-items:center;gap:16px;
-    padding:18px 22px;background:var(--ink);color:#fff;
-  }
-  .week-num{
-    font-family:"Space Grotesk";font-weight:700;font-size:20px;
-    color:var(--amber);min-width:2.2ch;
-  }
-  .week-head h3{font-size:16.5px;font-weight:500;color:#e9ebf1;}
-  .week-body{padding:22px;}
-  .task{
-    display:flex;gap:12px;padding:12px 0;border-top:1px solid #ece9df;
-  }
-  .task:first-child{border-top:0;padding-top:0;}
-  .task-status{
-    flex:none;margin-top:6px;width:8px;height:8px;border-radius:50%;
-  }
-  .status-done{background:var(--ok);}
-  .status-pending{background:var(--amber);}
-  .status-progress{background:#3b82c4;}
-  .task-text strong{display:block;font-weight:500;margin-bottom:2px;}
-  .task-text span{color:var(--slate);font-size:14.5px;}
-  .tag{
-    display:inline-block;margin-top:6px;
-    font-family:"IBM Plex Mono";font-size:11.5px;
-    padding:2px 8px;border-radius:999px;
-  }
-  .tag-pending{background:#fdf1dc;color:var(--amber-dim);}
-  .tag-done{background:#e6f5ec;color:#2c8a5b;}
-  .tag-progress{background:#e3edf7;color:#2f6fa3;}
-  .proj-link{display:inline-block;margin-top:6px;font-size:13.5px;color:var(--amber-dim);text-decoration:underline;}
-  .proj-link:hover, .proj-link:focus-visible{color:var(--ink);}
-  .week-note{
-    margin:14px 0 0;padding-top:14px;border-top:1px dashed var(--line);
-    font-size:13.5px;color:var(--slate);font-style:italic;
-  }
-
-  /* ---------- team ---------- */
-  .team-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-  }
-  @media (max-width:680px){.team-grid{grid-template-columns:1fr;}}
-  .member{
-    border:1px solid var(--line);background:#fff;border-radius:4px;
-    padding:24px;
-  }
-  .member-mark{
-    font-family:"IBM Plex Mono";font-size:12px;color:var(--amber-dim);
-    margin-bottom:10px;
-  }
-  .member h3{font-size:19px;margin-bottom:6px;}
-  .member p{color:var(--slate);font-size:14.5px;margin:0;}
+  .section-head .aside{font-family:"IBM Plex Mono";font-size:13px;color:var(--slate);}
+  .lead{max-width:64ch;color:var(--slate);font-size:16.5px;margin:0 0 12px;}
 
   /* ---------- about ---------- */
   .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
-  @media (max-width:680px){.about-grid{grid-template-columns:1fr;}}
-  .stat-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);background:#fff;border-radius:4px;}
-  .stat-row{display:flex;justify-content:space-between;padding:16px 20px;border-top:1px solid #ece9df;}
+  @media (max-width:720px){.about-grid{grid-template-columns:1fr;gap:24px;}}
+  .stat-list{border:1px solid var(--line);background:#fff;border-radius:4px;}
+  .stat-row{display:flex;justify-content:space-between;gap:12px;padding:15px 20px;border-top:1px solid var(--line-soft);}
   .stat-row:first-child{border-top:0;}
   .stat-row span:first-child{color:var(--slate);font-size:14px;}
-  .stat-row span:last-child{font-family:"IBM Plex Mono";font-weight:500;font-size:14px;}
+  .stat-row span:last-child{font-family:"IBM Plex Mono";font-weight:500;font-size:14px;text-align:right;}
 
-  footer{
-    background:var(--ink);color:#8b91a8;
-    padding:32px 0;font-size:13.5px;
+  /* ---------- prototype ---------- */
+  .proto{
+    display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;
   }
+  @media (max-width:720px){.proto{grid-template-columns:1fr;gap:24px;}}
+  .proto h3{font-size:21px;margin-bottom:10px;}
+  .parts{
+    border:1px solid var(--line);background:#fff;border-radius:4px;padding:20px;
+  }
+  .parts h4{
+    margin:0 0 12px;font-family:"IBM Plex Mono";font-weight:500;font-size:12.5px;color:var(--slate);
+  }
+  .parts ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+  .parts li{
+    font-size:13.5px;padding:5px 11px;border-radius:999px;
+    background:var(--mist);border:1px solid var(--line);
+  }
+  .phase-list{list-style:none;margin:18px 0 0;padding:0;}
+  .phase-list li{
+    display:flex;gap:12px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line-soft);
+    font-size:14.5px;color:var(--slate);
+  }
+  .phase-list li:first-child{border-top:0;}
+  .phase-list b{font-family:"IBM Plex Mono";font-weight:500;font-size:12px;color:var(--amber-dim);min-width:4.5ch;}
+
+  /* ---------- weekly log ---------- */
+  .log-tools{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    margin:6px 0 22px;
+  }
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--slate);}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .btn-ghost{
+    appearance:none;background:transparent;border:1px solid var(--line);border-radius:999px;
+    padding:6px 14px;font:inherit;font-size:13.5px;color:var(--ink);cursor:pointer;
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible{border-color:var(--ink);outline:none;}
+
+  .week{
+    border:1px solid var(--line);border-radius:4px;background:#fff;
+    margin-bottom:14px;overflow:hidden;scroll-margin-top:72px;
+  }
+  .week > summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;gap:16px;
+    padding:16px 22px;background:#fff;
+    border-bottom:1px solid transparent;
+  }
+  .week > summary::-webkit-details-marker{display:none;}
+  .week[open] > summary{background:var(--ink);color:#fff;}
+  .week > summary:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
+  .week-num{
+    font-family:"Space Grotesk";font-weight:700;font-size:20px;
+    color:var(--amber-dim);min-width:2.2ch;
+  }
+  .week[open] .week-num{color:var(--amber);}
+  .week-title{flex:1;min-width:0;}
+  .week-title h3{font-size:16.5px;font-weight:500;}
+  .week-dates{display:block;font-family:"IBM Plex Mono";font-size:12px;color:var(--slate);margin-top:2px;}
+  .week[open] .week-dates{color:#9aa2b8;}
+  .week-count{font-family:"IBM Plex Mono";font-size:12px;color:var(--slate);white-space:nowrap;}
+  .week[open] .week-count{color:#9aa2b8;}
+  .chev{width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .2s;opacity:.6;flex:none;margin-top:-4px;}
+  .week[open] .chev{transform:rotate(225deg);margin-top:4px;}
+  @media (prefers-reduced-motion: reduce){.chev{transition:none;}}
+  @media (max-width:560px){.week-count{display:none;}}
+
+  .week-body{display:grid;grid-template-columns:1fr 1fr;}
+  .day{padding:20px 22px;}
+  .day + .day{border-left:1px solid var(--line-soft);}
+  .day.full, .day.extra{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line-soft);}
+  .day.full:first-child, .day.extra:first-child{border-top:0;}
+  .day.extra{background:#fffaf0;}
+  @media (max-width:680px){
+    .week-body{grid-template-columns:1fr;}
+    .day + .day{border-left:0;border-top:1px solid var(--line-soft);}
+  }
+  .day-label{
+    font-family:"IBM Plex Mono";font-size:12.5px;color:var(--amber-dim);margin:0 0 10px;
+  }
+  .day-note{margin:0;font-size:14.5px;color:var(--slate);font-style:italic;}
+
+  .task{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line-soft);}
+  .task:first-of-type{border-top:0;padding-top:0;}
+  .dot{flex:none;margin-top:7px;width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .dot.done{background:var(--ok);}
+  .dot.pending{background:var(--amber);}
+  .dot.progress{background:var(--blue);}
+  .dot.closed{background:#c8473d;}
+  .task-text strong{display:block;font-weight:500;margin-bottom:3px;}
+  .task-text p{margin:0;color:var(--slate);font-size:14.5px;}
+  .task-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+  .tag{
+    display:inline-block;font-family:"IBM Plex Mono";font-size:11.5px;
+    padding:2px 8px;border-radius:999px;
+  }
+  .tag.pending{background:#fdf1dc;color:var(--amber-dim);}
+  .tag.done{background:#e6f5ec;color:#2c8a5b;}
+  .tag.progress{background:#e3edf7;color:#2f6fa3;}
+  .tag.closed{background:#fbe6e3;color:#a8352c;}
+  .proj-link{font-size:13.5px;color:var(--amber-dim);}
+  .proj-link:hover, .proj-link:focus-visible{color:var(--ink);}
+
+  /* ---------- team ---------- */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:720px){.team-grid{grid-template-columns:1fr;}}
+  .member{border:1px solid var(--line);background:#fff;border-radius:4px;padding:24px;}
+  .member h3{font-size:19px;margin-bottom:4px;}
+  .member .role{display:block;font-family:"IBM Plex Mono";font-size:12px;color:var(--amber-dim);margin-bottom:12px;}
+  .member p{color:var(--slate);font-size:14.5px;margin:0;}
+
+  footer{background:var(--ink);color:#8b91a8;padding:32px 0;font-size:13.5px;}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
   footer strong{color:#c7cbd6;}
 </style>
@@ -204,10 +264,11 @@
     <a class="brand" href="#top"><span class="brand-dot"></span>TICPoint</a>
     <nav class="links">
       <a href="#sobre" data-i18n="nav_about">Sobre el projecte</a>
+      <a href="#prototip" data-i18n="nav_proto">Prototip</a>
       <a href="#registre" data-i18n="nav_log">Registre setmanal</a>
       <a href="#equip" data-i18n="nav_team">Equip</a>
     </nav>
-    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+    <div class="lang-switch" role="group" aria-label="Idioma / Idioma">
       <button type="button" data-lang="ca" aria-pressed="true">CA</button>
       <button type="button" data-lang="es" aria-pressed="false">ES</button>
     </div>
@@ -216,19 +277,23 @@
 
 <div id="top" class="hero">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span><span data-i18n="hero_eyebrow">Diari de projecte — actualitzat cada setmana</span></div>
+    <div class="eyebrow"><span class="spark"></span><span data-i18n="hero_eyebrow">Diari de projecte — actualitzat cada setmana</span></div>
     <h1 data-i18n="hero_title">El diari de TICPoint</h1>
-    <p data-i18n="hero_desc">Seguiment anual d'un projecte d'assignatura: hem d'idear, entrevistar i acabar construint alguna cosa amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, els projectes que trobem, els contactes que fem i el que anem aprenent pel camí.</p>
+    <p data-i18n="hero_desc">Seguiment anual d'un projecte d'assignatura: hem de dissenyar i construir un prototip de producte amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, el que fem a classe els dimarts i els divendres.</p>
     <div class="hero-meta">
       <div><span data-i18n="meta_team_label">Equip</span>
-        <strong>Manel · Dante · Thiago</strong>
+        <strong>Manel, Dante i Thiago</strong>
       </div>
-      <div><span data-i18n="meta_status_label">Estat actual</span>
-        <strong data-i18n="meta_status_value">4 propostes esperant resposta</strong>
+      <div><span data-i18n="meta_status_label">Fase actual</span>
+        <strong data-i18n="meta_status_value">Muntatge del prototip</strong>
       </div>
-      <div><span data-i18n="meta_week_label">Setmana</span>
-        <strong>03</strong>
+      <div><span data-i18n="meta_week_label">Última setmana</span>
+        <strong id="current-week">10</strong>
       </div>
+    </div>
+    <div class="weekbar">
+      <div class="progress-label" data-i18n="progress_label">Setmanes registrades</div>
+      <div class="progress-cells" id="progress-cells"></div>
     </div>
   </div>
 </div>
@@ -237,169 +302,101 @@
   <div class="wrap">
     <div class="section-head">
       <h2 data-i18n="about_h2">Sobre el projecte</h2>
-      <span data-i18n="about_tag">TICPoint</span>
     </div>
     <div class="about-grid">
       <div>
-        <p class="lead" data-i18n="about_p1">TICPoint és el nom del nostre projecte de classe. L'objectiu és trobar una iniciativa o un equip real que estigui desenvolupant un producte o servei tecnològic, contactar-hi i fer-los una entrevista sobre com l'estan portant a terme.</p>
-        <p class="lead" data-i18n="about_p2">Cada setmana actualitzem aquesta pàgina amb el que hem fet: projectes que hem trobat, missatges que hem enviat i respostes que anem rebent.</p>
-        <p class="lead" data-i18n="about_p3">En paral·lel, el projecte té una part tècnica: al llarg del curs hem de programar una placa Arduino en C++, així que anem aprenent el llenguatge a mesura que avancem.</p>
+        <p class="lead" data-i18n="about_p1">TICPoint és el nom del nostre projecte de classe. Al llarg del curs hem de buscar una empresa o iniciativa tecnològica real per entrevistar-la, i alhora idear i construir el prototip d'un producte propi.</p>
+        <p class="lead" data-i18n="about_p2">La part tècnica la fem amb una placa Arduino programada en C++: primer amb pràctiques guiades, després amb un projecte lliure i ara amb el nostre prototip.</p>
+        <p class="lead" data-i18n="about_p3">Els dimarts solem fer presentacions i treballar la manera d'exposar; els divendres, programació i muntatge amb Arduino.</p>
       </div>
       <div class="stat-list">
-        <div class="stat-row"><span data-i18n="stat_projects">Projectes localitzats</span><span>4</span></div>
-        <div class="stat-row"><span data-i18n="stat_contacted">Contactes enviats</span><span>4</span></div>
-        <div class="stat-row"><span data-i18n="stat_pending">Pendents de resposta</span><span>4</span></div>
-        <div class="stat-row"><span data-i18n="stat_weeks">Setmanes actives</span><span>3</span></div>
-        <div class="stat-row"><span data-i18n="stat_tech">Component tècnic</span><span>Arduino + C++</span></div>
+        <div class="stat-row"><span data-i18n="stat_weeks">Setmanes registrades</span><span id="stat-weeks">10</span></div>
+        <div class="stat-row"><span data-i18n="stat_contacted">Empreses contactades</span><span>5</span></div>
+        <div class="stat-row"><span data-i18n="stat_interview">Entrevista feta</span><span>Rockocell</span></div>
+        <div class="stat-row"><span data-i18n="stat_presentations">Presentacions fetes</span><span>9</span></div>
+        <div class="stat-row"><span data-i18n="stat_practices">Pràctiques d'Arduino</span><span>3</span></div>
+        <div class="stat-row"><span data-i18n="stat_tech">Tecnologia</span><span>Arduino UNO + C++</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="registre" class="alt">
+<section id="prototip" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="proto_h2">El nostre prototip</h2>
+      <span class="aside" data-i18n="proto_aside">En construcció</span>
+    </div>
+    <div class="proto">
+      <div>
+        <h3 data-i18n="proto_title">Un joc automàtic per a gossos</h3>
+        <p class="lead" data-i18n="proto_p1">Un dispositiu per entretenir i entrenar el gos quan no hi ha ningú a casa. El gos prem un botó per començar, el dispositiu llença una pilota i, quan el gos la torna, rep un premi.</p>
+        <p class="lead" data-i18n="proto_p2">Una pantalla LCD mostra avisos i dos LEDs indiquen si pot jugar o no. Per no passar-se, hi ha un màxim de 4 jocs al dia.</p>
+        <ul class="phase-list">
+          <li><b>S06</b><span data-i18n="phase_1">Primeres idees del prototip</span></li>
+          <li><b>S07</b><span data-i18n="phase_2">Presentació de la proposta als professors</span></li>
+          <li><b>S08</b><span data-i18n="phase_3">Circuit a Tinkercad i primer muntatge real</span></li>
+          <li><b>S09–10</b><span data-i18n="phase_4">Maqueta de cartró i ajustos al circuit</span></li>
+        </ul>
+      </div>
+      <div class="parts">
+        <h4 data-i18n="parts_h">Components</h4>
+        <ul>
+          <li>Arduino UNO</li>
+          <li data-i18n="part_buttons">2 botons</li>
+          <li>LCD I2C</li>
+          <li>Buzzer</li>
+          <li>LEDs</li>
+          <li data-i18n="part_servos">3 servos</li>
+          <li data-i18n="part_sensor">Sensor</li>
+          <li data-i18n="part_balls">2 pilotes de goma</li>
+          <li data-i18n="part_cardboard">Maqueta de cartró</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="registre">
   <div class="wrap">
     <div class="section-head">
       <h2 data-i18n="log_h2">Registre setmanal</h2>
-      <span data-i18n="log_tag">Actualitzacions</span>
+      <span class="aside" data-i18n="log_aside">De la més recent a la més antiga</span>
     </div>
-    <p class="lead" data-i18n="log_lead">Aquí anem deixant constància de cada setmana: els projectes que investiguem per fer l'entrevista i, en paral·lel, els passos que fem amb la programació en C++ de cara a la placa Arduino. El punt ambre indica que estem a l'espera d'alguna resposta, el blau que ho tenim en marxa i el verd que ja està fet.</p>
-
-    <div class="week">
-      <div class="week-head">
-        <span class="week-num">01</span>
-        <h3 data-i18n="w1_title">Cerca de projectes i presentació de l'equip</h3>
+    <p class="lead" data-i18n="log_lead">Cada setmana té dues classes, dimarts i divendres. Obre una setmana per veure què vam fer cada dia.</p>
+    <div class="log-tools">
+      <div class="legend">
+        <span><i class="dot done"></i><span data-i18n="tag_done">Fet</span></span>
+        <span><i class="dot progress"></i><span data-i18n="tag_progress">En curs</span></span>
+        <span><i class="dot closed"></i><span data-i18n="tag_closed">Sense resposta</span></span>
       </div>
-      <div class="week-body">
-        <div class="task">
-          <span class="task-status status-pending"></span>
-          <div class="task-text">
-            <strong data-i18n="w1_t1_title">Publicitat amb drons</strong>
-            <span data-i18n="w1_t1_desc">Vam trobar un projecte a GoFundMe que proposa fer publicitat exterior amb drons i pantalles LED, com a alternativa als cartells tradicionals. Els vam enviar un missatge explicant qui som i demanant-los una entrevista sobre com estan portant el projecte, però encara no ens han contestat.</span>
-            <a class="proj-link" href="https://www.gofundme.com/f/la-publicidad-exterior-del-futuro-con-drones-y-pantallas-led" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
-            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-pending"></span>
-          <div class="task-text">
-            <strong data-i18n="w1_t2_title">Informàtica per a cotxes de carreres</strong>
-            <span data-i18n="w1_t2_desc">A Verkami vam trobar E-Tech Racing, un equip reduït que busca finançament per potenciar la part electrònica i informàtica dels seus cotxes de competició. Els vam escriure proposant-los una entrevista sobre el projecte, i seguim esperant resposta.</span>
-            <a class="proj-link" href="https://www.verkami.com/projects/30457-e-tech-racing-drivewithus" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
-            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-done"></span>
-          <div class="task-text">
-            <strong data-i18n="w1_t3_title">Presentació de rols de l'equip</strong>
-            <span data-i18n="w1_t3_desc">Vam presentar el nostre grup de treball a classe i vam explicar quin paper pot fer cadascú dins del projecte, perquè la feina de les properes setmanes quedés repartida des del principi.</span><br>
-            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-done"></span>
-          <div class="task-text">
-            <strong data-i18n="w1_t4_title">Inici de l'aprenentatge de C++</strong>
-            <span data-i18n="w1_t4_desc">Vam començar a aprendre les bases de C++ (variables, tipus de dades i estructures de control bàsiques), ja que més endavant l'haurem d'utilitzar per programar la placa Arduino.</span><br>
-            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
-          </div>
-        </div>
-      </div>
+      <button type="button" class="btn-ghost" id="toggle-all" data-i18n="open_all">Obrir totes</button>
     </div>
-
-    <div class="week">
-      <div class="week-head">
-        <span class="week-num">02</span>
-        <h3 data-i18n="w2_title">Presentació del grup i nova proposta</h3>
-      </div>
-      <div class="week-body">
-        <div class="task">
-          <span class="task-status status-done"></span>
-          <div class="task-text">
-            <strong data-i18n="w2_t1_title">Presentació del grup de treball</strong>
-            <span data-i18n="w2_t1_desc">Vam presentar formalment el nostre equip de treball davant de la classe, explicant en quin punt estàvem del projecte i quins eren els següents passos.</span><br>
-            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-pending"></span>
-          <div class="task-text">
-            <strong data-i18n="w2_t2_title">Caldera sense fums visibles</strong>
-            <span data-i18n="w2_t2_desc">A Kickstarter vam trobar EcoBoiler, una caldera pensada perquè no expulsi fums visibles ni contamini com les calderes convencionals. Els hem enviat un missatge per demanar-los una entrevista i estem pendents que ens contestin.</span>
-            <a class="proj-link" href="https://www.kickstarter.com/projects/energomult/ecoboiler-caldera-sin-contaminacion" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
-            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-done"></span>
-          <div class="task-text">
-            <strong data-i18n="w2_t3_title">Primers exercicis de C++</strong>
-            <span data-i18n="w2_t3_desc">Hem fet els primers exercicis pràctics de C++ per posar en pràctica el que vam aprendre la setmana anterior, com a pas previ abans de començar a programar l'Arduino.</span><br>
-            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="week">
-      <div class="week-head">
-        <span class="week-num">03</span>
-        <h3 data-i18n="w3_title">Primeres pràctiques amb Arduino</h3>
-      </div>
-      <div class="week-body">
-        <div class="task">
-          <span class="task-status status-done"></span>
-          <div class="task-text">
-            <strong data-i18n="w3_t1_title">Pràctica de LEDs i polsador</strong>
-            <span data-i18n="w3_t1_desc">Vam connectar tres LEDs a la placa: un parpellejava de manera continua mentre els altres dos s'encenien i s'apagaven en prémer un polsador. Vam escriure el primer codi en C++ per controlar-ho des de l'Arduino.</span><br>
-            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-done"></span>
-          <div class="task-text">
-            <strong data-i18n="w3_t2_title">Sensor de llum i potenciòmetre</strong>
-            <span data-i18n="w3_t2_desc">Segona pràctica: amb un sensor de llum (LDR) i un potenciòmetre vam controlar quan s'havien d'encendre o apagar els LEDs segons la quantitat de llum i el llindar que fixàvem.</span><br>
-            <span class="tag tag-done" data-i18n="tag_done">Fet</span>
-          </div>
-        </div>
-        <div class="task">
-          <span class="task-status status-pending"></span>
-          <div class="task-text">
-            <strong data-i18n="w3_t3_title">Connectivitat per a Game Boy Advance</strong>
-            <span data-i18n="w3_t3_desc">Vam trobar CanoFlash, una empresa que ha creat un adaptador Wi-Fi i un SDK en C per fer jocs homebrew multijugador en línia per a la Game Boy Advance original. Els hem escrit per demanar-los una entrevista i estem a l'espera de resposta.</span>
-            <a class="proj-link" href="https://canoflash.com/es/" target="_blank" rel="noopener" data-i18n="link_view_project">Veure el projecte</a><br>
-            <span class="tag tag-pending" data-i18n="tag_waiting">En espera de resposta</span>
-          </div>
-        </div>
-        <p class="week-note" data-i18n="w3_note">Dimarts no vam tenir classe, així que aquest dia no vam avançar en el projecte.</p>
-      </div>
-    </div>
-
+    <div id="weeks"></div>
   </div>
 </section>
 
-<section id="equip">
+<section id="equip" class="alt">
   <div class="wrap">
     <div class="section-head">
       <h2 data-i18n="team_h2">Equip</h2>
-      <span data-i18n="team_tag">3 integrants</span>
+      <span class="aside" data-i18n="team_tag">3 integrants</span>
     </div>
     <div class="team-grid">
       <div class="member">
-        <div class="member-mark">01</div>
         <h3>Manel</h3>
-        <p data-i18n="member_manel">Aporta habilitat amb HTML i resolució de problemes: li agrada mantenir la feina clara i trobar solucions ràpides amb una actitud proactiva.</p>
+        <span class="role" data-i18n="role_manel">Organització</span>
+        <p data-i18n="member_manel">Aporta organització i resolució de problemes: li agrada mantenir la feina clara i trobar solucions ràpides amb una actitud proactiva.</p>
       </div>
       <div class="member">
-        <div class="member-mark">02</div>
         <h3>Dante</h3>
-        <p data-i18n="member_dante">Aporta gestió i s'encarrega de la documentació del projecte: s'encarrega d'estructurar les tasques i mantenir la constància del grup perquè tot avanci com toca.</p>
+        <span class="role" data-i18n="role_dante">Gestió</span>
+        <p data-i18n="member_dante">Aporta gestió i responsabilitat: s'encarrega d'estructurar les tasques i mantenir la constància del grup perquè tot avanci com toca.</p>
       </div>
       <div class="member">
-        <div class="member-mark">03</div>
         <h3>Thiago</h3>
-        <p data-i18n="member_thiago">Aporta creativitat i s'encarrega de comunicar amb les empreses: proposa idees noves i ajuda que el grup es coordini millor gràcies al seu esforç i participació.</p>
+        <span class="role" data-i18n="role_thiago">Creativitat</span>
+        <p data-i18n="member_thiago">Aporta creativitat i bona comunicació: proposa idees noves i ajuda que el grup es coordini millor gràcies al seu esforç i participació.</p>
       </div>
     </div>
   </div>
@@ -408,153 +405,504 @@
 <footer>
   <div class="wrap">
     <div><strong>TICPoint</strong> — <span data-i18n="footer_note">diari de projecte, actualitzat cada setmana</span></div>
-    <div data-i18n="footer_year">Curs 2026</div>
+    <div data-i18n="footer_year">Curs 2026–2027</div>
   </div>
 </footer>
 
 <script>
+/* =========================================================
+   REGISTRE SETMANAL
+   Per afegir una setmana nova: copia el primer bloc { n: ... }
+   de la llista, enganxa'l a dalt de tot, canvia el número,
+   les dates i els textos (ca = català, es = castellà).
+
+   status: "done" (fet), "progress" (en curs), "pending" (en espera),
+           "closed" (sense resposta, en vermell)
+   day:    "tue" (dimarts), "fri" (divendres), "week" (tota la setmana),
+           "extra" (un altre dia: posa label i date)
+   note:   en lloc de items, per dir que no hi va haver classe
+   ========================================================= */
+const WEEKS = [
+  {
+    n: 10, start: "2026-11-17", end: "2026-11-20",
+    title: { ca: "Ajustos al muntatge", es: "Ajustes al montaje" },
+    days: [
+      { day: "tue", date: "2026-11-17", items: [
+        { status: "progress",
+          title: { ca: "Nou muntatge amb els canvis", es: "Nuevo montaje con los cambios" },
+          desc:  { ca: "Vam tornar a muntar el circuit a la placa Arduino aplicant els canvis que ens van proposar els professors a la revisió del divendres anterior. Era important fer-ho bé ara, abans de fixar res a la maqueta, perquè després és més difícil tocar el cablejat.",
+                   es: "Volvimos a montar el circuito en la placa Arduino aplicando los cambios que nos propusieron los profesores en la revisión del viernes anterior. Era importante hacerlo bien ahora, antes de fijar nada en la maqueta, porque después es más difícil tocar el cableado." } },
+        { status: "progress",
+          title: { ca: "Seguim amb la maqueta de cartró", es: "Seguimos con la maqueta de cartón" },
+          desc:  { ca: "En paral·lel vam continuar amb l'estructura de cartró, que és on anirà col·locat tot el sistema: la placa, els servos, les pilotes i el dispensador de premis.",
+                   es: "En paralelo seguimos con la estructura de cartón, que es donde irá colocado todo el sistema: la placa, los servos, las pelotas y el dispensador de premios." } }
+      ]},
+      { day: "fri", date: "2026-11-20", note: { ca: "No vam tenir classe.", es: "No tuvimos clase." } }
+    ]
+  },
+  {
+    n: 9, start: "2026-11-10", end: "2026-11-13",
+    title: { ca: "Maqueta de cartró i revisió", es: "Maqueta de cartón y revisión" },
+    days: [
+      { day: "tue", date: "2026-11-10", items: [
+        { status: "done",
+          title: { ca: "Continuem la maqueta de cartró", es: "Seguimos con la maqueta de cartón" },
+          desc:  { ca: "Vam dedicar la classe a avançar l'estructura de cartró del prototip: anar-li donant forma i pensar on aniran els components perquè hi càpiguen bé i el gos el pugui fer servir sense problemes.",
+                   es: "Dedicamos la clase a avanzar la estructura de cartón del prototipo: irle dando forma y pensar dónde irán los componentes para que quepan bien y el perro lo pueda usar sin problemas." } }
+      ]},
+      { day: "fri", date: "2026-11-13", items: [
+        { status: "done",
+          title: { ca: "Presentació de l'avanç", es: "Presentación del avance" },
+          desc:  { ca: "Vam presentar als professors tot el que portàvem fet, ensenyant el muntatge físic de la placa Arduino. Ens van proposar alguns canvis per millorar el prototip, que vam començar a aplicar la setmana següent.",
+                   es: "Presentamos a los profesores todo lo que llevábamos hecho, enseñando el montaje físico de la placa Arduino. Nos propusieron algunos cambios para mejorar el prototipo, que empezamos a aplicar la semana siguiente." } }
+      ]}
+    ]
+  },
+  {
+    n: 8, start: "2026-11-03", end: "2026-11-06",
+    title: { ca: "Del Tinkercad a la placa real", es: "Del Tinkercad a la placa real" },
+    days: [
+      { day: "tue", date: "2026-11-03", items: [
+        { status: "done",
+          title: { ca: "Circuit del prototip a Tinkercad", es: "Circuito del prototipo en Tinkercad" },
+          desc:  { ca: "Vam començar a fer el circuit del prototip a Tinkercad: col·locar la placa Arduino, els botons, la pantalla LCD, el buzzer, els LEDs i els servos, i escriure el codi en C++. Fer-ho primer en simulació ens permet provar-ho tot sense risc d'espatllar cap component.",
+                   es: "Empezamos a hacer el circuito del prototipo en Tinkercad: colocar la placa Arduino, los botones, la pantalla LCD, el buzzer, los LEDs y los servos, y escribir el código en C++. Hacerlo primero en simulación nos permite probarlo todo sin riesgo de estropear ningún componente." } }
+      ]},
+      { day: "fri", date: "2026-11-06", items: [
+        { status: "done",
+          title: { ca: "Primer muntatge físic", es: "Primer montaje físico" },
+          desc:  { ca: "Vam passar el circuit de Tinkercad a una placa Arduino real, amb el mateix codi i els mateixos components, per comprovar que funcionava igual que a la simulació.",
+                   es: "Pasamos el circuito de Tinkercad a una placa Arduino real, con el mismo código y los mismos componentes, para comprobar que funcionaba igual que en la simulación." } },
+        { status: "done",
+          title: { ca: "Inici de la maqueta de cartró", es: "Inicio de la maqueta de cartón" },
+          desc:  { ca: "Vam començar a construir l'estructura del prototip amb cartró. La maqueta ens ajuda a veure com quedaria el producte real i on aniria cada peça.",
+                   es: "Empezamos a construir la estructura del prototipo con cartón. La maqueta nos ayuda a ver cómo quedaría el producto real y dónde iría cada pieza." } }
+      ]}
+    ]
+  },
+  {
+    n: 7, start: "2026-10-27", end: "2026-10-30",
+    title: { ca: "Presentació del prototip", es: "Presentación del prototipo" },
+    days: [
+      { day: "tue", date: "2026-10-27", items: [
+        { status: "done",
+          title: { ca: "Presentació de l'empresa entrevistada", es: "Presentación de la empresa entrevistada" },
+          desc:  { ca: "A partir del vídeo de l'entrevista del diumenge, vam preparar i fer una presentació sobre Rockocell, l'empresa argentina que vam entrevistar, per explicar a la classe qui són i què ens van explicar.",
+                   es: "A partir del vídeo de la entrevista del domingo, preparamos e hicimos una presentación sobre Rockocell, la empresa argentina que entrevistamos, para explicar a la clase quiénes son y qué nos contaron." },
+          link: "https://www.instagram.com/rockocell/", linkLabel: "instagram" },
+        { status: "done",
+          title: { ca: "Presentem la nostra idea de producte", es: "Presentamos nuestra idea de producto" },
+          desc:  { ca: "Vam presentar el prototip que volem fer com a empresa: un dispositiu per entretenir i entrenar gossos quan no hi ha ningú a casa. Vam explicar com funcionaria, quins components faria servir i per què pot ser útil.",
+                   es: "Presentamos el prototipo que queremos hacer como empresa: un dispositivo para entretener y entrenar perros cuando no hay nadie en casa. Explicamos cómo funcionaría, qué componentes usaría y por qué puede ser útil." } }
+      ]},
+      { day: "fri", date: "2026-10-30", items: [
+        { status: "done",
+          title: { ca: "Segona versió de la presentació", es: "Segunda versión de la presentación" },
+          desc:  { ca: "Vam repetir la presentació amb alguns canvis i millores, perquè la poguessin veure també els professors que tenim els divendres i ens donessin la seva opinió.",
+                   es: "Repetimos la presentación con algunos cambios y mejoras, para que también la pudieran ver los profesores que tenemos los viernes y nos dieran su opinión." } }
+      ]}
+    ]
+  },
+  {
+    n: 6, start: "2026-10-20", end: "2026-10-25",
+    title: { ca: "Idees del prototip i entrevista", es: "Ideas del prototipo y entrevista" },
+    days: [
+      { day: "tue", date: "2026-10-20", items: [
+        { status: "done",
+          title: { ca: "Ideació del producte", es: "Ideación del producto" },
+          desc:  { ca: "Vam començar a pensar quin prototip de producte volem fer com a empresa. Vam posar idees en comú i a partir d'aquí va sortir la del dispositiu per a gossos, pensant quines funcions hauria de tenir.",
+                   es: "Empezamos a pensar qué prototipo de producto queremos hacer como empresa. Pusimos ideas en común y a partir de ahí salió la del dispositivo para perros, pensando qué funciones debería tener." } }
+      ]},
+      { day: "fri", date: "2026-10-23", items: [
+        { status: "done",
+          title: { ca: "Nova pràctica amb Arduino", es: "Nueva práctica con Arduino" },
+          desc:  { ca: "Vam fer una altra pràctica amb la placa Arduino amb components i funcions que encara no havíem fet servir, per seguir practicant el C++ i agafar idees de cara al nostre prototip.",
+                   es: "Hicimos otra práctica con la placa Arduino con componentes y funciones que todavía no habíamos usado, para seguir practicando el C++ y coger ideas de cara a nuestro prototipo." } }
+      ]},
+      { day: "extra", date: "2026-10-25", label: { ca: "Diumenge", es: "Domingo" }, items: [
+        { status: "done",
+          title: { ca: "Entrevista a Rockocell", es: "Entrevista a Rockocell" },
+          desc:  { ca: "Per fi vam poder fer l'entrevista! Rockocell és una empresa argentina i va ser la que ens va respondre. La vam gravar en vídeo i ens servirà per preparar una presentació sobre l'empresa.",
+                   es: "¡Por fin pudimos hacer la entrevista! Rockocell es una empresa argentina y fue la que nos respondió. La grabamos en vídeo y nos servirá para preparar una presentación sobre la empresa." },
+          link: "https://www.instagram.com/rockocell/", linkLabel: "instagram" }
+      ]}
+    ]
+  },
+  {
+    n: 5, start: "2026-10-13", end: "2026-10-16",
+    title: { ca: "Dues presentacions", es: "Dos presentaciones" },
+    days: [
+      { day: "tue", date: "2026-10-13", items: [
+        { status: "done",
+          title: { ca: "Proposta d'entrevista més propera", es: "Propuesta de entrevista más cercana" },
+          desc:  { ca: "Com que les empreses que havíem contactat no ens responien, vam fer una presentació per demanar permís per fer l'entrevista a una empresa més propera.",
+                   es: "Como las empresas que habíamos contactado no nos respondían, hicimos una presentación para pedir permiso para hacer la entrevista a una empresa más cercana." } }
+      ]},
+      { day: "fri", date: "2026-10-16", items: [
+        { status: "done",
+          title: { ca: "Presentació del projecte lliure", es: "Presentación del proyecto libre" },
+          desc:  { ca: "Cada grup va presentar el projecte lliure que havia fet amb la placa Arduino: què fa, quins components fa servir i com està programat en C++.",
+                   es: "Cada grupo presentó el proyecto libre que había hecho con la placa Arduino: qué hace, qué componentes usa y cómo está programado en C++." } }
+      ]}
+    ]
+  },
+  {
+    n: 4, start: "2026-10-06", end: "2026-10-09",
+    title: { ca: "Expressió oral i projecte lliure", es: "Expresión oral y proyecto libre" },
+    days: [
+      { day: "tue", date: "2026-10-06", items: [
+        { status: "done",
+          title: { ca: "Com exposar millor", es: "Cómo exponer mejor" },
+          desc:  { ca: "Vam fer una presentació per treballar la postura i la manera d'exposar davant del públic, una cosa que ens servirà per a totes les presentacions que farem durant el curs.",
+                   es: "Hicimos una presentación para trabajar la postura y la manera de exponer delante del público, algo que nos servirá para todas las presentaciones que haremos durante el curso." } }
+      ]},
+      { day: "fri", date: "2026-10-09", items: [
+        { status: "done",
+          title: { ca: "Inici del projecte lliure amb Arduino", es: "Inicio del proyecto libre con Arduino" },
+          desc:  { ca: "En grups, vam començar un projecte lliure amb la placa Arduino programada en C++. Cada grup podia triar què volia construir, posant en pràctica el que havíem après a les primeres pràctiques.",
+                   es: "En grupos, empezamos un proyecto libre con la placa Arduino programada en C++. Cada grupo podía elegir qué quería construir, poniendo en práctica lo que habíamos aprendido en las primeras prácticas." } }
+      ]}
+    ]
+  },
+  {
+    n: 3, start: "2026-09-29", end: "2026-10-02",
+    title: { ca: "Primeres pràctiques amb Arduino", es: "Primeras prácticas con Arduino" },
+    days: [
+      { day: "tue", date: "2026-09-29", note: { ca: "No vam tenir classe.", es: "No tuvimos clase." } },
+      { day: "fri", date: "2026-10-02", items: [
+        { status: "done",
+          title: { ca: "LEDs i polsador", es: "LEDs y pulsador" },
+          desc:  { ca: "Primera pràctica amb la placa: tres LEDs, un que parpellejava de manera contínua mentre els altres dos s'encenien i s'apagaven en prémer un polsador. Vam escriure el primer codi en C++ per controlar-ho.",
+                   es: "Primera práctica con la placa: tres LEDs, uno que parpadeaba de forma continua mientras los otros dos se encendían y apagaban al pulsar un botón. Escribimos el primer código en C++ para controlarlo." } },
+        { status: "done",
+          title: { ca: "Sensor de llum i potenciòmetre", es: "Sensor de luz y potenciómetro" },
+          desc:  { ca: "Amb un sensor de llum (LDR) i un potenciòmetre vam controlar quan s'encenien o s'apagaven els LEDs, segons la llum que hi havia i el llindar que fixàvem amb el potenciòmetre.",
+                   es: "Con un sensor de luz (LDR) y un potenciómetro controlamos cuándo se encendían o apagaban los LEDs, según la luz que había y el umbral que fijábamos con el potenciómetro." } }
+      ]},
+      { day: "week", items: [
+        { status: "closed",
+          title: { ca: "Contacte amb CanoFlash", es: "Contacto con CanoFlash" },
+          desc:  { ca: "Empresa que ha creat un adaptador Wi-Fi i un SDK en C per fer jocs multijugador en línia per a la Game Boy Advance. Els vam demanar una entrevista, però no ens van respondre.",
+                   es: "Empresa que ha creado un adaptador Wi-Fi y un SDK en C para hacer juegos multijugador en línea para la Game Boy Advance. Les pedimos una entrevista, pero no nos respondieron." },
+          link: "https://canoflash.com/es/" }
+      ]}
+    ]
+  },
+  {
+    n: 2, start: null, end: null,
+    title: { ca: "Presentació del grup i nova proposta", es: "Presentación del grupo y nueva propuesta" },
+    days: [
+      { day: "week", items: [
+        { status: "done",
+          title: { ca: "Presentació del grup de treball", es: "Presentación del grupo de trabajo" },
+          desc:  { ca: "Vam presentar formalment el nostre equip davant de la classe, explicant en quin punt estàvem del projecte i quins eren els següents passos.",
+                   es: "Presentamos formalmente nuestro equipo ante la clase, explicando en qué punto estábamos del proyecto y cuáles eran los siguientes pasos." } },
+        { status: "closed",
+          title: { ca: "Caldera sense fums visibles", es: "Caldera sin humos visibles" },
+          desc:  { ca: "A Kickstarter vam trobar EcoBoiler, una caldera pensada perquè no expulsi fums visibles ni contamini com les convencionals. Els vam demanar una entrevista, però no ens van respondre.",
+                   es: "En Kickstarter encontramos EcoBoiler, una caldera pensada para no expulsar humos visibles ni contaminar como las convencionales. Les pedimos una entrevista, pero no nos respondieron." },
+          link: "https://www.kickstarter.com/projects/energomult/ecoboiler-caldera-sin-contaminacion" },
+        { status: "done",
+          title: { ca: "Primers exercicis de C++", es: "Primeros ejercicios de C++" },
+          desc:  { ca: "Exercicis pràctics per posar en pràctica el que vam aprendre la setmana anterior, com a pas previ abans de començar a programar l'Arduino.",
+                   es: "Ejercicios prácticos para poner en práctica lo aprendido la semana anterior, como paso previo antes de empezar a programar el Arduino." } }
+      ]}
+    ]
+  },
+  {
+    n: 1, start: null, end: null,
+    title: { ca: "Cerca de projectes i presentació de l'equip", es: "Búsqueda de proyectos y presentación del equipo" },
+    days: [
+      { day: "week", items: [
+        { status: "closed",
+          title: { ca: "Publicitat amb drons", es: "Publicidad con drones" },
+          desc:  { ca: "Projecte de GoFundMe que proposa fer publicitat exterior amb drons i pantalles LED, com a alternativa als cartells tradicionals. Els vam escriure per demanar-los una entrevista, però no ens van respondre.",
+                   es: "Proyecto de GoFundMe que propone hacer publicidad exterior con drones y pantallas LED, como alternativa a los carteles tradicionales. Les escribimos para pedirles una entrevista, pero no nos respondieron." },
+          link: "https://www.gofundme.com/f/la-publicidad-exterior-del-futuro-con-drones-y-pantallas-led" },
+        { status: "closed",
+          title: { ca: "Informàtica per a cotxes de carreres", es: "Informática para coches de carreras" },
+          desc:  { ca: "A Verkami vam trobar E-Tech Racing, un equip petit que vol potenciar la part electrònica i informàtica dels seus cotxes de competició. Els vam proposar una entrevista, però no ens van respondre.",
+                   es: "En Verkami encontramos E-Tech Racing, un equipo pequeño que quiere potenciar la parte electrónica e informática de sus coches de competición. Les propusimos una entrevista, pero no nos respondieron." },
+          link: "https://www.verkami.com/projects/30457-e-tech-racing-drivewithus" },
+        { status: "done",
+          title: { ca: "Presentació de rols de l'equip", es: "Presentación de roles del equipo" },
+          desc:  { ca: "Vam explicar quin paper fa cadascú dins del projecte i què pot aportar, perquè la feina quedés repartida des del principi.",
+                   es: "Explicamos qué papel hace cada uno dentro del proyecto y qué puede aportar, para que el trabajo quedara repartido desde el principio." } },
+        { status: "done",
+          title: { ca: "Inici de l'aprenentatge de C++", es: "Inicio del aprendizaje de C++" },
+          desc:  { ca: "Vam començar amb les bases de C++ (variables, tipus de dades i estructures de control), el llenguatge que farem servir per programar l'Arduino.",
+                   es: "Empezamos con las bases de C++ (variables, tipos de datos y estructuras de control), el lenguaje que usaremos para programar el Arduino." } }
+      ]}
+    ]
+  }
+];
+
+/* ---------- textos fixos de la pàgina ---------- */
 const translations = {
   ca: {
     nav_about: "Sobre el projecte",
+    nav_proto: "Prototip",
     nav_log: "Registre setmanal",
     nav_team: "Equip",
     hero_eyebrow: "Diari de projecte — actualitzat cada setmana",
     hero_title: "El diari de TICPoint",
-    hero_desc: "Seguiment anual d'un projecte d'assignatura: hem d'idear, entrevistar i acabar construint alguna cosa amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, els projectes que trobem, els contactes que fem i el que anem aprenent pel camí.",
+    hero_desc: "Seguiment anual d'un projecte d'assignatura: hem de dissenyar i construir un prototip de producte amb una placa Arduino programada en C++. Aquesta web recull, setmana a setmana, el que fem a classe els dimarts i els divendres.",
     meta_team_label: "Equip",
-    meta_status_label: "Estat actual",
-    meta_status_value: "4 propostes esperant resposta",
-    meta_week_label: "Setmana",
+    meta_status_label: "Fase actual",
+    meta_status_value: "Muntatge del prototip",
+    meta_week_label: "Última setmana",
+    progress_label: "Setmanes registrades",
     about_h2: "Sobre el projecte",
-    about_tag: "TICPoint",
-    about_p1: "TICPoint és el nom del nostre projecte de classe. L'objectiu és trobar una iniciativa o un equip real que estigui desenvolupant un producte o servei tecnològic, contactar-hi i fer-los una entrevista sobre com l'estan portant a terme.",
-    about_p2: "Cada setmana actualitzem aquesta pàgina amb el que hem fet: projectes que hem trobat, missatges que hem enviat i respostes que anem rebent.",
-    about_p3: "En paral·lel, el projecte té una part tècnica: al llarg del curs hem de programar una placa Arduino en C++, així que anem aprenent el llenguatge a mesura que avancem.",
-    stat_projects: "Projectes localitzats",
-    stat_contacted: "Contactes enviats",
-    stat_pending: "Pendents de resposta",
-    stat_weeks: "Setmanes actives",
-    stat_tech: "Component tècnic",
+    about_p1: "TICPoint és el nom del nostre projecte de classe. Al llarg del curs hem de buscar una empresa o iniciativa tecnològica real per entrevistar-la, i alhora idear i construir el prototip d'un producte propi.",
+    about_p2: "La part tècnica la fem amb una placa Arduino programada en C++: primer amb pràctiques guiades, després amb un projecte lliure i ara amb el nostre prototip.",
+    about_p3: "Els dimarts solem fer presentacions i treballar la manera d'exposar; els divendres, programació i muntatge amb Arduino.",
+    stat_weeks: "Setmanes registrades",
+    stat_contacted: "Empreses contactades",
+    stat_presentations: "Presentacions fetes",
+    stat_practices: "Pràctiques d'Arduino",
+    stat_tech: "Tecnologia",
+    proto_h2: "El nostre prototip",
+    proto_aside: "En construcció",
+    proto_title: "Un joc automàtic per a gossos",
+    proto_p1: "Un dispositiu per entretenir i entrenar el gos quan no hi ha ningú a casa. El gos prem un botó per començar, el dispositiu llença una pilota i, quan el gos la torna, rep un premi.",
+    proto_p2: "Una pantalla LCD mostra avisos i dos LEDs indiquen si pot jugar o no. Per no passar-se, hi ha un màxim de 4 jocs al dia.",
+    phase_1: "Primeres idees del prototip",
+    phase_2: "Presentació de la proposta als professors",
+    phase_3: "Circuit a Tinkercad i primer muntatge real",
+    phase_4: "Maqueta de cartró i ajustos al circuit",
+    parts_h: "Components",
+    part_buttons: "2 botons",
+    part_servos: "3 servos",
+    part_sensor: "Sensor",
+    part_balls: "2 pilotes de goma",
+    part_cardboard: "Maqueta de cartró",
     log_h2: "Registre setmanal",
-    log_tag: "Actualitzacions",
-    log_lead: "Aquí anem deixant constància de cada setmana: els projectes que investiguem per fer l'entrevista i, en paral·lel, els passos que fem amb la programació en C++ de cara a la placa Arduino. El punt ambre indica que estem a l'espera d'alguna resposta, el blau que ho tenim en marxa i el verd que ja està fet.",
-    w1_title: "Cerca de projectes i presentació de l'equip",
-    w1_t1_title: "Publicitat amb drons",
-    w1_t1_desc: "Vam trobar un projecte a GoFundMe que proposa fer publicitat exterior amb drons i pantalles LED, com a alternativa als cartells tradicionals. Els vam enviar un missatge explicant qui som i demanant-los una entrevista sobre com estan portant el projecte, però encara no ens han contestat.",
-    w1_t2_title: "Informàtica per a cotxes de carreres",
-    w1_t2_desc: "A Verkami vam trobar E-Tech Racing, un equip reduït que busca finançament per potenciar la part electrònica i informàtica dels seus cotxes de competició. Els vam escriure proposant-los una entrevista sobre el projecte, i seguim esperant resposta.",
-    w1_t3_title: "Presentació de rols de l'equip",
-    w1_t3_desc: "Vam presentar el nostre grup de treball a classe i vam explicar quin paper pot fer cadascú dins del projecte, perquè la feina de les properes setmanes quedés repartida des del principi.",
-    w1_t4_title: "Inici de l'aprenentatge de C++",
-    w1_t4_desc: "Vam començar a aprendre les bases de C++ (variables, tipus de dades i estructures de control bàsiques), ja que més endavant l'haurem d'utilitzar per programar la placa Arduino.",
-    w2_title: "Presentació del grup i nova proposta",
-    w2_t1_title: "Presentació del grup de treball",
-    w2_t1_desc: "Vam presentar formalment el nostre equip de treball davant de la classe, explicant en quin punt estàvem del projecte i quins eren els següents passos.",
-    w2_t2_title: "Caldera sense fums visibles",
-    w2_t2_desc: "A Kickstarter vam trobar EcoBoiler, una caldera pensada perquè no expulsi fums visibles ni contamini com les calderes convencionals. Els hem enviat un missatge per demanar-los una entrevista i estem pendents que ens contestin.",
-    w2_t3_title: "Primers exercicis de C++",
-    w2_t3_desc: "Hem fet els primers exercicis pràctics de C++ per posar en pràctica el que vam aprendre la setmana anterior, com a pas previ abans de començar a programar l'Arduino.",
-    w3_title: "Primeres pràctiques amb Arduino",
-    w3_t1_title: "Pràctica de LEDs i polsador",
-    w3_t1_desc: "Vam connectar tres LEDs a la placa: un parpellejava de manera continua mentre els altres dos s'encenien i s'apagaven en prémer un polsador. Vam escriure el primer codi en C++ per controlar-ho des de l'Arduino.",
-    w3_t2_title: "Sensor de llum i potenciòmetre",
-    w3_t2_desc: "Segona pràctica: amb un sensor de llum (LDR) i un potenciòmetre vam controlar quan s'havien d'encendre o apagar els LEDs segons la quantitat de llum i el llindar que fixàvem.",
-    w3_t3_title: "Connectivitat per a Game Boy Advance",
-    w3_t3_desc: "Vam trobar CanoFlash, una empresa que ha creat un adaptador Wi-Fi i un SDK en C per fer jocs homebrew multijugador en línia per a la Game Boy Advance original. Els hem escrit per demanar-los una entrevista i estem a l'espera de resposta.",
-    w3_note: "Dimarts no vam tenir classe, així que aquest dia no vam avançar en el projecte.",
+    log_aside: "De la més recent a la més antiga",
+    log_lead: "Cada setmana té dues classes, dimarts i divendres. Obre una setmana per veure què vam fer cada dia.",
+    open_all: "Obrir totes",
+    close_all: "Tancar totes",
     tag_waiting: "En espera de resposta",
     tag_done: "Fet",
     tag_progress: "En curs",
+    tag_closed: "Sense resposta",
+    link_instagram: "Veure el seu Instagram",
+    stat_interview: "Entrevista feta",
     link_view_project: "Veure el projecte",
+    week_word: "Setmana",
+    tasks_word: "tasques",
+    task_word: "tasca",
+    day_tue: "Dimarts",
+    day_fri: "Divendres",
+    day_week: "Durant la setmana",
     team_h2: "Equip",
     team_tag: "3 integrants",
+    role_manel: "Organització",
+    role_dante: "Gestió",
+    role_thiago: "Creativitat",
     member_manel: "Aporta organització i resolució de problemes: li agrada mantenir la feina clara i trobar solucions ràpides amb una actitud proactiva.",
     member_dante: "Aporta gestió i responsabilitat: s'encarrega d'estructurar les tasques i mantenir la constància del grup perquè tot avanci com toca.",
     member_thiago: "Aporta creativitat i bona comunicació: proposa idees noves i ajuda que el grup es coordini millor gràcies al seu esforç i participació.",
     footer_note: "diari de projecte, actualitzat cada setmana",
-    footer_year: "Curs 2026-2027"
+    footer_year: "Curs 2026–2027",
+    months: ["gen","febr","març","abr","maig","juny","jul","ag","set","oct","nov","des"]
   },
   es: {
     nav_about: "Sobre el proyecto",
+    nav_proto: "Prototipo",
     nav_log: "Registro semanal",
     nav_team: "Equipo",
     hero_eyebrow: "Diario de proyecto — actualizado cada semana",
     hero_title: "El diario de TICPoint",
-    hero_desc: "Seguimiento anual de un proyecto de asignatura: tenemos que idear, entrevistar y acabar construyendo algo con una placa Arduino programada en C++. Esta web recoge, semana a semana, los proyectos que encontramos, los contactos que hacemos y lo que vamos aprendiendo por el camino.",
+    hero_desc: "Seguimiento anual de un proyecto de asignatura: tenemos que diseñar y construir un prototipo de producto con una placa Arduino programada en C++. Esta web recoge, semana a semana, lo que hacemos en clase los martes y los viernes.",
     meta_team_label: "Equipo",
-    meta_status_label: "Estado actual",
-    meta_status_value: "4 propuestas esperando respuesta",
-    meta_week_label: "Semana",
+    meta_status_label: "Fase actual",
+    meta_status_value: "Montaje del prototipo",
+    meta_week_label: "Última semana",
+    progress_label: "Semanas registradas",
     about_h2: "Sobre el proyecto",
-    about_tag: "TICPoint",
-    about_p1: "TICPoint es el nombre de nuestro proyecto de clase. El objetivo es encontrar una iniciativa o un equipo real que esté desarrollando un producto o servicio tecnológico, contactar con ellos y hacerles una entrevista sobre cómo lo están llevando a cabo.",
-    about_p2: "Cada semana actualizamos esta página con lo que hemos hecho: proyectos que hemos encontrado, mensajes que hemos enviado y respuestas que vamos recibiendo.",
-    about_p3: "En paralelo, el proyecto tiene una parte técnica: a lo largo del curso tenemos que programar una placa Arduino en C++, así que vamos aprendiendo el lenguaje a medida que avanzamos.",
-    stat_projects: "Proyectos localizados",
-    stat_contacted: "Contactos enviados",
-    stat_pending: "Pendientes de respuesta",
-    stat_weeks: "Semanas activas",
-    stat_tech: "Componente técnico",
+    about_p1: "TICPoint es el nombre de nuestro proyecto de clase. A lo largo del curso tenemos que buscar una empresa o iniciativa tecnológica real para entrevistarla y, a la vez, idear y construir el prototipo de un producto propio.",
+    about_p2: "La parte técnica la hacemos con una placa Arduino programada en C++: primero con prácticas guiadas, después con un proyecto libre y ahora con nuestro prototipo.",
+    about_p3: "Los martes solemos hacer presentaciones y trabajar la manera de exponer; los viernes, programación y montaje con Arduino.",
+    stat_weeks: "Semanas registradas",
+    stat_contacted: "Empresas contactadas",
+    stat_presentations: "Presentaciones hechas",
+    stat_practices: "Prácticas de Arduino",
+    stat_tech: "Tecnología",
+    proto_h2: "Nuestro prototipo",
+    proto_aside: "En construcción",
+    proto_title: "Un juego automático para perros",
+    proto_p1: "Un dispositivo para entretener y entrenar al perro cuando no hay nadie en casa. El perro pulsa un botón para empezar, el dispositivo suelta una pelota y, cuando el perro la devuelve, recibe un premio.",
+    proto_p2: "Una pantalla LCD muestra avisos y dos LEDs indican si puede jugar o no. Para no pasarse, hay un máximo de 4 juegos al día.",
+    phase_1: "Primeras ideas del prototipo",
+    phase_2: "Presentación de la propuesta a los profesores",
+    phase_3: "Circuito en Tinkercad y primer montaje real",
+    phase_4: "Maqueta de cartón y ajustes al circuito",
+    parts_h: "Componentes",
+    part_buttons: "2 botones",
+    part_servos: "3 servos",
+    part_sensor: "Sensor",
+    part_balls: "2 pelotas de goma",
+    part_cardboard: "Maqueta de cartón",
     log_h2: "Registro semanal",
-    log_tag: "Actualizaciones",
-    log_lead: "Aquí vamos dejando constancia de cada semana: los proyectos que investigamos para la entrevista y, en paralelo, los pasos que damos con la programación en C++ de cara a la placa Arduino. El punto ámbar indica que estamos a la espera de alguna respuesta, el azul que lo tenemos en marcha y el verde que ya está hecho.",
-    w1_title: "Búsqueda de proyectos y presentación del equipo",
-    w1_t1_title: "Publicidad con drones",
-    w1_t1_desc: "Encontramos un proyecto en GoFundMe que propone hacer publicidad exterior con drones y pantallas LED, como alternativa a los carteles tradicionales. Les enviamos un mensaje explicando quiénes somos y pidiéndoles una entrevista sobre cómo están llevando el proyecto, pero todavía no nos han contestado.",
-    w1_t2_title: "Informática para coches de carreras",
-    w1_t2_desc: "En Verkami encontramos E-Tech Racing, un equipo reducido que busca financiación para potenciar la parte electrónica e informática de sus coches de competición. Les escribimos proponiéndoles una entrevista sobre el proyecto, y seguimos esperando respuesta.",
-    w1_t3_title: "Presentación de roles del equipo",
-    w1_t3_desc: "Presentamos nuestro grupo de trabajo en clase y explicamos qué papel puede hacer cada uno dentro del proyecto, para que el trabajo de las próximas semanas quedara repartido desde el principio.",
-    w1_t4_title: "Inicio del aprendizaje de C++",
-    w1_t4_desc: "Empezamos a aprender las bases de C++ (variables, tipos de datos y estructuras de control básicas), ya que más adelante tendremos que usarlo para programar la placa Arduino.",
-    w2_title: "Presentación del grupo y nueva propuesta",
-    w2_t1_title: "Presentación del grupo de trabajo",
-    w2_t1_desc: "Presentamos formalmente nuestro equipo de trabajo ante la clase, explicando en qué punto estábamos del proyecto y cuáles eran los siguientes pasos.",
-    w2_t2_title: "Caldera sin humos visibles",
-    w2_t2_desc: "En Kickstarter encontramos EcoBoiler, una caldera pensada para no expulsar humos visibles ni contaminar como las calderas convencionales. Les hemos enviado un mensaje para pedirles una entrevista y estamos pendientes de que nos contesten.",
-    w2_t3_title: "Primeros ejercicios de C++",
-    w2_t3_desc: "Hicimos los primeros ejercicios prácticos de C++ para poner en práctica lo aprendido la semana anterior, como paso previo antes de empezar a programar el Arduino.",
-    w3_title: "Primeras prácticas con Arduino",
-    w3_t1_title: "Práctica de LEDs y pulsador",
-    w3_t1_desc: "Conectamos tres LEDs a la placa: uno parpadeaba de forma continua mientras los otros dos se encendían y apagaban al pulsar un botón. Escribimos el primer código en C++ para controlarlo desde el Arduino.",
-    w3_t2_title: "Sensor de luz y potenciómetro",
-    w3_t2_desc: "Segunda práctica: con un sensor de luz (LDR) y un potenciómetro controlamos cuándo debían encenderse o apagarse los LEDs según la cantidad de luz y el umbral que fijábamos.",
-    w3_t3_title: "Conectividad para Game Boy Advance",
-    w3_t3_desc: "Encontramos CanoFlash, una empresa que ha creado un adaptador Wi-Fi y un SDK en C para hacer juegos homebrew multijugador en línea para la Game Boy Advance original. Les hemos escrito para pedirles una entrevista y estamos a la espera de respuesta.",
-    w3_note: "El martes no tuvimos clase, así que ese día no avanzamos en el proyecto.",
+    log_aside: "De la más reciente a la más antigua",
+    log_lead: "Cada semana tiene dos clases, martes y viernes. Abre una semana para ver qué hicimos cada día.",
+    open_all: "Abrir todas",
+    close_all: "Cerrar todas",
     tag_waiting: "En espera de respuesta",
     tag_done: "Hecho",
     tag_progress: "En curso",
+    tag_closed: "Sin respuesta",
+    link_instagram: "Ver su Instagram",
+    stat_interview: "Entrevista hecha",
     link_view_project: "Ver el proyecto",
+    week_word: "Semana",
+    tasks_word: "tareas",
+    task_word: "tarea",
+    day_tue: "Martes",
+    day_fri: "Viernes",
+    day_week: "Durante la semana",
     team_h2: "Equipo",
     team_tag: "3 integrantes",
-    member_manel: "Aporta habilidad con HTML y resolución de problemas: le gusta mantener el trabajo claro y encontrar soluciones rápidas con una actitud proactiva.",
-    member_dante: "Aporta gestión y se encarga de la documentación del proyecto: se encarga de estructurar las tareas y mantener la constancia del grupo para que todo avance como toca.",
-    member_thiago: "Aporta creatividad y se encarga de comunicar con las empresas: propone ideas nuevas y ayuda a que el grupo se coordine mejor gracias a su esfuerzo y participación.",
+    role_manel: "Organización",
+    role_dante: "Gestión",
+    role_thiago: "Creatividad",
+    member_manel: "Aporta organización y resolución de problemas: le gusta mantener el trabajo claro y encontrar soluciones rápidas con una actitud proactiva.",
+    member_dante: "Aporta gestión y responsabilidad: se encarga de estructurar las tareas y mantener la constancia del grupo para que todo avance como toca.",
+    member_thiago: "Aporta creatividad y buena comunicación: propone ideas nuevas y ayuda a que el grupo se coordine mejor gracias a su esfuerzo y participación.",
     footer_note: "diario de proyecto, actualizado cada semana",
-    footer_year: "Curso 2026-2027"
+    footer_year: "Curso 2026–2027",
+    months: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"]
   }
 };
 
-function setLang(lang){
-  document.documentElement.lang = lang;
-  var dict = translations[lang];
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var key = el.getAttribute('data-i18n');
-    if(dict && dict[key] !== undefined){
-      el.textContent = dict[key];
-    }
+/* ---------- a partir d'aquí no cal tocar res ---------- */
+let currentLang = "ca";
+const STATUS_KEY = { done: "tag_done", progress: "tag_progress", pending: "tag_waiting", closed: "tag_closed" };
+
+function el(tag, cls, text){
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+function fmtDate(iso, t){
+  if (!iso) return "";
+  const p = iso.split("-");
+  return parseInt(p[2], 10) + " " + t.months[parseInt(p[1], 10) - 1];
+}
+function pad(n){ return n < 10 ? "0" + n : String(n); }
+
+function renderWeeks(){
+  const t = translations[currentLang];
+  const box = document.getElementById("weeks");
+  const openState = {};
+  box.querySelectorAll("details.week").forEach(d => { openState[d.id] = d.open; });
+  const firstRender = !box.children.length;
+  box.innerHTML = "";
+
+  WEEKS.forEach((w, i) => {
+    const det = el("details", "week");
+    det.id = "setmana-" + w.n;
+    det.open = firstRender ? i === 0 : !!openState[det.id];
+
+    const sum = el("summary");
+    sum.appendChild(el("span", "week-num", pad(w.n)));
+    const tt = el("div", "week-title");
+    tt.appendChild(el("h3", null, w.title[currentLang]));
+    if (w.start) tt.appendChild(el("span", "week-dates", fmtDate(w.start, t) + " – " + fmtDate(w.end, t)));
+    sum.appendChild(tt);
+    let count = 0;
+    w.days.forEach(d => { count += (d.items || []).length; });
+    sum.appendChild(el("span", "week-count", count + " " + (count === 1 ? t.task_word : t.tasks_word)));
+    sum.appendChild(el("span", "chev"));
+    det.appendChild(sum);
+
+    const body = el("div", "week-body");
+    w.days.forEach(d => {
+      const col = el("div", "day" + (d.day === "week" ? " full" : d.day === "extra" ? " extra" : ""));
+      let label = d.label ? d.label[currentLang] : t["day_" + d.day];
+      if (d.date) label += " " + fmtDate(d.date, t);
+      col.appendChild(el("p", "day-label", label));
+      if (d.note) col.appendChild(el("p", "day-note", d.note[currentLang]));
+      (d.items || []).forEach(it => {
+        const task = el("div", "task");
+        task.appendChild(el("span", "dot " + it.status));
+        const tx = el("div", "task-text");
+        tx.appendChild(el("strong", null, it.title[currentLang]));
+        tx.appendChild(el("p", null, it.desc[currentLang]));
+        const meta = el("div", "task-meta");
+        meta.appendChild(el("span", "tag " + it.status, t[STATUS_KEY[it.status]]));
+        if (it.link){
+          const a = el("a", "proj-link", it.linkLabel === "instagram" ? t.link_instagram : t.link_view_project);
+          a.href = it.link; a.target = "_blank"; a.rel = "noopener";
+          meta.appendChild(a);
+        }
+        tx.appendChild(meta);
+        task.appendChild(tx);
+        col.appendChild(task);
+      });
+      body.appendChild(col);
+    });
+    det.appendChild(body);
+    det.addEventListener("toggle", updateToggleLabel);
+    box.appendChild(det);
   });
-  document.querySelectorAll('.lang-switch button').forEach(function(btn){
-    btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
-  });
+  updateToggleLabel();
 }
 
-document.querySelectorAll('.lang-switch button').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    setLang(btn.getAttribute('data-lang'));
+function renderProgress(){
+  const t = translations[currentLang];
+  const box = document.getElementById("progress-cells");
+  box.innerHTML = "";
+  const latest = Math.max.apply(null, WEEKS.map(w => w.n));
+  WEEKS.slice().sort((a, b) => a.n - b.n).forEach(w => {
+    const a = el("a", "filled" + (w.n === latest ? " current" : ""), pad(w.n));
+    a.href = "#setmana-" + w.n;
+    a.title = t.week_word + " " + w.n + ": " + w.title[currentLang];
+    a.addEventListener("click", () => {
+      const d = document.getElementById("setmana-" + w.n);
+      if (d) d.open = true;
+    });
+    box.appendChild(a);
   });
+  document.getElementById("current-week").textContent = pad(latest);
+  document.getElementById("stat-weeks").textContent = WEEKS.length;
+}
+
+function updateToggleLabel(){
+  const t = translations[currentLang];
+  const all = document.querySelectorAll("details.week");
+  const allOpen = Array.prototype.every.call(all, d => d.open);
+  document.getElementById("toggle-all").textContent = allOpen ? t.close_all : t.open_all;
+}
+
+document.getElementById("toggle-all").addEventListener("click", () => {
+  const all = document.querySelectorAll("details.week");
+  const allOpen = Array.prototype.every.call(all, d => d.open);
+  all.forEach(d => { d.open = !allOpen; });
+  updateToggleLabel();
 });
+
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  const dict = translations[lang];
+  document.querySelectorAll("[data-i18n]").forEach(node => {
+    const key = node.getAttribute("data-i18n");
+    if (typeof dict[key] === "string") node.textContent = dict[key];
+  });
+  document.querySelectorAll(".lang-switch button").forEach(btn => {
+    btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+  });
+  renderWeeks();
+  renderProgress();
+}
+
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => setLang(btn.getAttribute("data-lang")));
+});
+
+setLang("ca");
 </script>
 
 </body>
